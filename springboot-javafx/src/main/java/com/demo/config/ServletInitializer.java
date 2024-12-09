@@ -1,5 +1,6 @@
-package com.demo;
+package com.demo.config;
 
+import com.demo.MainApp;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
@@ -7,7 +8,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(SpringbootJavafxApplication.class);
+		return application.sources(MainApp.class);
 	}
 
 }

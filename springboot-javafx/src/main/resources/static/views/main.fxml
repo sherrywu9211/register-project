@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.demo.controller.MainController">
+<!-- 上方按鈕區域 -->
+<top>
+    <HBox spacing="20.0" style="-fx-padding: 10; -fx-background-color: #f0f0f0;">
+        <Button fx:id="mnrRegister" text="MNR註冊查詢" onAction="#onMnrButtonClick"/>
+        <Button fx:id="apiChangeStatus" text="接收API服務" onAction="#onApiButtonClick"/>
+    </HBox>
+</top>
+
+<!-- 中央分頁區域 -->
+<center>
+    <StackPane fx:id="contentArea" style="-fx-padding: 10;">
+        <!-- 預設顯示 -->
+        <Label text="歡迎來到主頁！請點選左上方選項" />
+    </StackPane>
+</center>
+</BorderPane>
