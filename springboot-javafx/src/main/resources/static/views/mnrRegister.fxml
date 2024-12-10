@@ -11,19 +11,19 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="mnrText" text="【MNR註冊查詢】"/>
+    <Label fx:id="mnrTextField" text="【MNR註冊查詢】"/>
     <Label text="護照號碼："/>
-    <TextField fx:id="passportNo" promptText="輸入您的護照號碼" />
+    <TextField fx:id="passportNoField" promptText="輸入您的護照號碼" />
     <Label text="許可證號："/>
-    <TextField fx:id="permitNo" promptText="輸入您的許可證號" />
+    <TextField fx:id="permitNoField" promptText="輸入您的許可證號" />
     <Label text="閘門編號："/>
-    <TextField fx:id="terminalId" promptText="輸入您的閘門編號" />
+    <TextField fx:id="terminalIdField" promptText="輸入您的閘門編號" />
     <Label text="註冊時間-起："/>
-    <DatePicker fx:id="applyDateS"/>
+    <DatePicker fx:id="applyDateSField"/>
     <Label text="註冊時間-迄："/>
-    <DatePicker fx:id="applyDateE"/>
+    <DatePicker fx:id="applyDateEField"/>
     <Label text="旅行編號："/>
-    <TextField fx:id="travelId" promptText="輸入您的旅行編號" />
+    <TextField fx:id="travelIdField" promptText="輸入您的旅行編號" />
 
     <Button text="查詢" onAction="#onSearchButtonClick"/>
     <Label text="查詢結果："/>
