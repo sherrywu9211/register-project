@@ -1,6 +1,7 @@
 package com.demo.controller;
 
 import com.demo.model.Resident;
+import com.demo.service.MnrRegisterService;
 import com.demo.util.MnrApiUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -29,11 +30,14 @@ public class MnrRegisterController {
     private Label mnrResult;
 
     @Autowired
+    private MnrRegisterService mnrRegisterService;
+
+    @Autowired
     private MnrApiUtil mnrApiUtil;
 
 
     @FXML
-    public void onSearchButtonClick() {
+    public void selectAllButtonClick() {
         // 把key in的資料 傳送參數到第一支api
         // 接收api回應參數 並顯示結果
         Resident resident = new Resident();
@@ -58,8 +62,8 @@ public class MnrRegisterController {
         }
         // todo
         // 呼叫api方法
-//        mnrApiUtil.MnrApi(resident);
-//        System.out.println(mnrApiUtil.MnrApi(resident));
+        mnrRegisterService.selectAllMnr(resident);
+        System.out.println(mnrRegisterService.selectAllMnr(resident));
 
         // 生成 HBox > for迴圈 顯示註冊者資料
 
