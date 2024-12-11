@@ -17,8 +17,9 @@ public class MnrApiUtil {
     // MNR註冊查詢
     private static final String MNR4_BACKEND_URL = "http://10.11.10.100:10000/MNR4_Backend/api/mnr/QueryEgateApplication";
 
-    @Autowired
-    private RestTemplate restTemplate;
+//    @Autowired
+//    private RestTemplate restTemplate;
+    RestTemplate restTemplate = new RestTemplate();
 
     ObjectMapper objectMapper = new ObjectMapper();
 
@@ -35,11 +36,6 @@ public class MnrApiUtil {
         System.out.println(mnrParams);
 
         // 傳送參數API
-        // 設定傳送表頭格式與請求參數
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json");
-        HttpEntity<String> requestEntity = new HttpEntity<>(mnrParams, headers);
-
         // API 傳送參數 & 回傳參數
         ResponseEntity<String> response = restTemplate.postForEntity(
                 MNR4_BACKEND_URL, mnrParams, String.class

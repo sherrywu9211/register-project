@@ -34,14 +34,11 @@
         <Label text=" 至 "/>
         <DatePicker fx:id="applyDateEField" prefWidth="150" />
     </HBox>
-<!--    <HBox spacing="20">-->
-<!--        <Spinner fx:id="total" promptText="總頁數" prefWidth="100" editable="true"/>-->
-<!--        <Spinner fx:id="pageSize" promptText="每頁大小" prefWidth="100" editable="true"/>-->
-<!--        <Spinner fx:id="pageNumber" promptText="頁碼" prefWidth="100" editable="true"/>-->
-<!--    </HBox>-->
     <Region prefHeight="10"/> <!-- 空行 -->
     <Button text="查詢" onAction="#selectAllButtonClick"/>
     <Label text="查詢結果："/>
     <Label fx:id="mnrResult"/>
+
+
 
 </VBox>

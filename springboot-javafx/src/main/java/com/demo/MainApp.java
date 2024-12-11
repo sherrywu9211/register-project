@@ -21,7 +21,6 @@ public class MainApp extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		// 使用 Spring 管理的 FXMLLoader
-		// 放FXML路徑
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/static/views/main.fxml"));
 		Scene scene = new Scene(fxmlLoader.load(), 500, 600);
 		stage.setTitle("MNR查詢系統");

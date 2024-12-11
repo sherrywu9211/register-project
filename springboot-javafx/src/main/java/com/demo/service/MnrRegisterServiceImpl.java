@@ -5,7 +5,6 @@ import com.demo.model.Resident;
 import com.demo.util.MnrApiUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

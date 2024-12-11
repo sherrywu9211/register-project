@@ -11,14 +11,15 @@ public class Resident {
     private String documentType = "";    // 證件類別
     private String[] terminalId = new String[] {}; // 閘門編號
 
-    @JsonFormat(pattern = "yyyyMMdd", timezone = "GMT+8")
+//    @JsonFormat(pattern = "yyyyMMdd", timezone = "GMT+8")
     private String applyDateS = "";  // 註冊時間-起
 
-    @JsonFormat(pattern = "yyyyMMdd", timezone = "GMT+8")
+//    @JsonFormat(pattern = "yyyyMMdd", timezone = "GMT+8")
     private String applyDateE = "";  // 註冊時間-迄
     private String travelId = "";    // travelId
     private String residentIdNo = "";
     private String selectImgType = ""; // 註冊生物特徵類別
+
     private int total;          // 總數
     private int pageSize;       // 每頁大小
     private int pageNumber;     // 頁碼
