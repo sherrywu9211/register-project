@@ -8,8 +8,8 @@
 <!-- 上方按鈕區域 -->
 <top>
     <HBox spacing="20.0" style="-fx-padding: 10; -fx-background-color: #f0f0f0;">
-        <Button fx:id="mnrRegister" text="MNR註冊查詢" onAction="#onMnrButtonClick"/>
-        <Button fx:id="apiChangeStatus" text="接收API服務" onAction="#onApiButtonClick"/>
+        <Button text="MNR註冊查詢" onAction="#onMnrButtonClick"/>
+        <Button text="接收API服務" onAction="#onApiButtonClick"/>
     </HBox>
 </top>
 

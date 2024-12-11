@@ -12,8 +12,6 @@ public class MainController {
     private static final String API_CHANGE_VIEW = "/static/views/apiChange.fxml";
 
     @FXML
-    private Button mnrRegister;
-    @FXML
     private StackPane contentArea; // 分頁顯示區域
 
     // MNR註冊查詢
