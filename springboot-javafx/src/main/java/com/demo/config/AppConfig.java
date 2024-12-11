@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 @Configuration
-@ComponentScan("com.demo")
+@ComponentScan("com.demo.*")
 public class AppConfig {
 
     @Bean
