@@ -4,18 +4,17 @@ import com.demo.model.MnrResponse;
 import com.demo.model.Resident;
 import com.demo.service.MnrRegisterService;
 import com.demo.service.MnrRegisterServiceImpl;
-import com.demo.util.MnrApiUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import org.springframework.beans.factory.annotation.Autowired;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import org.springframework.stereotype.Controller;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-public class MnrRegisterController {
+public class MnrRegisterController extends MainController {
 
     @FXML
     private TextField passportNoField;
@@ -33,12 +32,25 @@ public class MnrRegisterController {
     private Label mnrResult;
 
     MnrRegisterService mnrRegisterService = new MnrRegisterServiceImpl();
-    MnrApiUtil mnrApiUtil = new MnrApiUtil();
-
 
     @FXML
+    private TableView<MnrResponse> resListTableView;
+    @FXML
+    private TableColumn<MnrResponse, String> systemUpdateTimeColumn;
+    @FXML
+    private TableColumn<MnrResponse, Integer> portColumn;
+    @FXML
+    private TableColumn<MnrResponse, String> passportNoColumn;
+    @FXML
+    private TableColumn<MnrResponse, String> chineseNameColumn;
+    @FXML
+    private TableColumn<MnrResponse, String> englishNameColumn;
+    @FXML
+    private TableColumn<MnrResponse, String> applyDateColumn;
+
+    // 第一支api
+    @FXML
     public void selectAllButtonClick() {
-        // 把key in的資料 傳送參數到第一支api
         // 接收api回應參數 並顯示結果
         Resident resident = new Resident();
 
@@ -61,21 +73,20 @@ public class MnrRegisterController {
         if(applyDateEField.getValue() != null) {
             resident.setApplyDateE(applyDateEField.getValue().format(formatter));
         }
-        // todo
         // 呼叫api方法
         List<MnrResponse> resList = mnrRegisterService.selectAllMnr(resident);
-
-        // 取出結果
-        for (MnrResponse item : resList) {
-            System.out.println(item.getChineseName());
-            System.out.println(item.getEnglishName());
-        }
-        // 生成 HBox > for迴圈 顯示註冊者資料
+        // 顯示註冊者資料
+        systemUpdateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("systemUpdateTime"));
+        portColumn.setCellValueFactory(new PropertyValueFactory<>("port"));
+        passportNoColumn.setCellValueFactory(new PropertyValueFactory<>("passportNo"));
+        chineseNameColumn.setCellValueFactory(new PropertyValueFactory<>("chineseName"));
+        englishNameColumn.setCellValueFactory(new PropertyValueFactory<>("englishName"));
+        applyDateColumn.setCellValueFactory(new PropertyValueFactory<>("applyDate"));
+        // 將資料加入 TableView & 呈現查詢結果
+        ObservableList<MnrResponse> data = FXCollections.observableArrayList(resList);
+        resListTableView.setItems(data);
 
         // 綁定 註冊者卡片 點擊事件 > loadView 新fxml
-
-
-        mnrResult.setText("register還沒開發完~");
     }
 
 }

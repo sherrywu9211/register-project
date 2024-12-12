@@ -36,9 +36,17 @@
     </HBox>
     <Region prefHeight="10"/> <!-- 空行 -->
     <Button text="查詢" onAction="#selectAllButtonClick"/>
-    <Label text="查詢結果："/>
-    <Label fx:id="mnrResult"/>
 
-
-
+    <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+        <TableView fx:id="resListTableView" prefWidth="600" prefHeight="400" >
+            <columns>
+                <TableColumn text="更新日期" fx:id="systemUpdateTimeColumn" prefWidth="140" />
+                <TableColumn text="port" fx:id="portColumn" prefWidth="40"/>
+                <TableColumn text="護照號碼" fx:id="passportNoColumn" />
+                <TableColumn text="中文姓名" fx:id="chineseNameColumn" prefWidth="100"/>
+                <TableColumn text="英文姓名" fx:id="englishNameColumn" prefWidth="100"/>
+                <TableColumn text="申請日期" fx:id="applyDateColumn" />
+            </columns>
+        </TableView>
+    </VBox>
 </VBox>

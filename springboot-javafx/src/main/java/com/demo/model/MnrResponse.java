@@ -1,6 +1,11 @@
 package com.demo.model;
 
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 public class MnrResponse {
 
     // 回應參數
@@ -12,8 +17,10 @@ public class MnrResponse {
     private String applyDate;
 
 
-    public long getSystemUpdateTime() {
-        return systemUpdateTime;
+    public String getSystemUpdateTime() {
+        // 轉換 long > 日期
+        LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(systemUpdateTime), ZoneId.systemDefault());
+        return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     public void setSystemUpdateTime(int systemUpdateTime) {
