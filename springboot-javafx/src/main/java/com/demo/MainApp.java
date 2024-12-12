@@ -22,7 +22,7 @@ public class MainApp extends Application{
 	public void start(Stage stage) throws Exception {
 		// 使用 Spring 管理的 FXMLLoader
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/static/views/main.fxml"));
-		Scene scene = new Scene(fxmlLoader.load(), 500, 600);
+		Scene scene = new Scene(fxmlLoader.load(), 600, 600);
 		stage.setTitle("MNR查詢系統");
 		stage.setScene(scene);
 		stage.show();
