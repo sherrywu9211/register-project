@@ -20,9 +20,9 @@ public class Resident {
     private String residentIdNo = "";
     private String selectImgType = ""; // 註冊生物特徵類別
 
-    private int total;          // 總數
-    private int pageSize;       // 每頁大小
-    private int pageNumber;     // 頁碼
+    private int total = 1;          // 總數
+    private int pageSize = 2;       // 每頁大小
+    private int pageNumber = 1;     // 頁碼
 
     @Override
     public String toString() {

@@ -4,7 +4,7 @@ package com.demo.model;
 public class MnrResponse {
 
     // 回應參數
-    private int systemUpdateTime;
+    private long systemUpdateTime;
     private int port;
     private String passportNo;
     private String chineseName;
@@ -12,7 +12,7 @@ public class MnrResponse {
     private String applyDate;
 
 
-    public int getSystemUpdateTime() {
+    public long getSystemUpdateTime() {
         return systemUpdateTime;
     }
 

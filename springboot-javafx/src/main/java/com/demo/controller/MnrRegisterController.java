@@ -1,7 +1,9 @@
 package com.demo.controller;
 
+import com.demo.model.MnrResponse;
 import com.demo.model.Resident;
 import com.demo.service.MnrRegisterService;
+import com.demo.service.MnrRegisterServiceImpl;
 import com.demo.util.MnrApiUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
@@ -10,6 +12,7 @@ import javafx.scene.control.TextField;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Controller
 public class MnrRegisterController {
@@ -29,12 +32,9 @@ public class MnrRegisterController {
     @FXML
     private Label mnrResult;
 
-//    @Autowired
-//    private MnrRegisterService mnrRegisterService;
-
-//    @Autowired
-//    private MnrApiUtil mnrApiUtil;
+    MnrRegisterService mnrRegisterService = new MnrRegisterServiceImpl();
     MnrApiUtil mnrApiUtil = new MnrApiUtil();
+
 
     @FXML
     public void selectAllButtonClick() {
@@ -63,10 +63,13 @@ public class MnrRegisterController {
         }
         // todo
         // 呼叫api方法
-        mnrApiUtil.MnrApi(resident);
-//        mnrRegisterService.selectAllMnr(resident);
-//        System.out.println(mnrRegisterService.selectAllMnr(resident));
+        List<MnrResponse> resList = mnrRegisterService.selectAllMnr(resident);
 
+        // 取出結果
+        for (MnrResponse item : resList) {
+            System.out.println(item.getChineseName());
+            System.out.println(item.getEnglishName());
+        }
         // 生成 HBox > for迴圈 顯示註冊者資料
 
         // 綁定 註冊者卡片 點擊事件 > loadView 新fxml
