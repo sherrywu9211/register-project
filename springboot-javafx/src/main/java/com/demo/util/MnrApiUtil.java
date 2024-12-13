@@ -15,7 +15,6 @@ public class MnrApiUtil {
     RestTemplate restTemplate = new RestTemplate();
 
     public String mnrApi(Resident resident) {
-
         // 物件轉JSON
         String mnrParams;
         try {
