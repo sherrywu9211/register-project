@@ -1,6 +1,7 @@
 package com.demo.service;
 
 import com.demo.model.MnrResponse;
+import com.demo.model.PersonResponse;
 import com.demo.model.Resident;
 import com.demo.util.MnrApiUtil;
 import com.google.gson.JsonObject;
@@ -14,23 +15,24 @@ import com.google.gson.Gson;
 public class MnrRegisterServiceImpl implements MnrRegisterService {
 
     MnrApiUtil mnrApiUtil = new MnrApiUtil();
+    Gson gson = new Gson();
 
     @Override
     public List<MnrResponse> selectAllMnr(Resident resident) {
         // 傳送並取得 JSON格式的回應
-        String jsonData = mnrApiUtil.MnrApi(resident);
-        // 轉換格式
-        Gson gson = new Gson();
+        String jsonData = mnrApiUtil.mnrApi(resident);
+
         // 定義泛型類型
         Type listType = new TypeToken<List<MnrResponse>>() {}.getType();
         String resListJson = gson.fromJson(jsonData, JsonObject.class).get("resList").toString();
-        List<MnrResponse> resList = gson.fromJson(resListJson, listType);
 
-        return resList;
+        return gson.fromJson(resListJson, listType);
     }
 
     @Override
-    public MnrResponse selectOneMnr(String travelId, String passportNo, String seqNo) {
-        return null;
+    public PersonResponse selectOneMnr(String travelId, String passportNo, String seqNo) {
+        // 呼叫API & 取得回應結果
+        String responseJson = mnrApiUtil.oneMnrApi(travelId, passportNo, seqNo);
+        return gson.fromJson(responseJson, PersonResponse.class);
     }
 }

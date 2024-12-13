@@ -15,7 +15,8 @@ public class MnrResponse {
     private String chineseName;
     private String englishName;
     private String applyDate;
-
+    private String travelId;
+    private String seqNo;
 
     public String getSystemUpdateTime() {
         // 轉換 long > 日期
@@ -65,5 +66,21 @@ public class MnrResponse {
 
     public void setApplyDate(String applyDate) {
         this.applyDate = applyDate;
+    }
+
+    public String getTravelId() {
+        return travelId;
+    }
+
+    public void setTravelId(String travelId) {
+        this.travelId = travelId;
+    }
+
+    public String getSeqNo() {
+        return seqNo;
+    }
+
+    public void setSeqNo(String seqNo) {
+        this.seqNo = seqNo;
     }
 }
