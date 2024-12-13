@@ -14,30 +14,30 @@
     <Label text="【MNR個人資料】"/>
     <HBox>
         <Label text="更新日期："/>
-        <Label fx:id="passportNoField" prefWidth="150"/>
+        <Label fx:id="systemUpdateTimeField" prefWidth="150"/>
     </HBox>
     <HBox>
         <Label text="port："/>
-        <Label fx:id="portColumn" prefWidth="150"/>
+        <Label fx:id="portField" prefWidth="150"/>
     </HBox>
     <HBox>
         <Label text="申請日期："/>
-        <Label fx:id="applyDateColumn" prefWidth="150"/>
+        <Label fx:id="applyDateField" prefWidth="150"/>
     </HBox>
     <HBox>
         <Label text="英文姓名："/>
-        <Label fx:id="englishNameColumn" prefWidth="150"/>
+        <Label fx:id="englishNameField" prefWidth="150"/>
     </HBox>
     <HBox>
         <Label text="中文姓名："/>
-        <Label fx:id="chineseNameColumn" prefWidth="150"/>
+        <Label fx:id="chineseNameField" prefWidth="150"/>
     </HBox>
     <HBox>
         <Label text="性別："/>
-        <Label fx:id="genderColumn" prefWidth="150"/>
+        <Label fx:id="genderField" prefWidth="150"/>
     </HBox>
     <HBox>
         <Label text="辨識照："/>
-        <ImageView fx:id="faceImageRegColumn"/>
+        <ImageView fx:id="faceImageRegField"/>
     </HBox>
 </VBox>

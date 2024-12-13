@@ -1,5 +1,11 @@
 package com.demo.model;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import javafx.scene.image.Image;
+
 public class PersonResponse {
 
     private String systemUpdateTime;
@@ -7,19 +13,22 @@ public class PersonResponse {
     private String applyDate;
     private String englishName;
     private String chineseName;
-    private String faceImageReg;
     private String gender;
+    private String faceImageReg;
+    private Image faceImage;
 
     public String getSystemUpdateTime() {
-        return systemUpdateTime;
+        // 轉換 long > 日期
+        LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(Long.parseLong(systemUpdateTime)), ZoneId.systemDefault());
+        return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     public void setSystemUpdateTime(String systemUpdateTime) {
         this.systemUpdateTime = systemUpdateTime;
     }
 
-    public int getPort() {
-        return port;
+    public String getPort() {
+        return port+"";
     }
 
     public void setPort(int port) {
@@ -57,6 +66,7 @@ public class PersonResponse {
     public void setFaceImageReg(String faceImageReg) {
         this.faceImageReg = faceImageReg;
     }
+
 
     public String getGender() {
         return gender;
