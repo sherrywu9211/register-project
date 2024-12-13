@@ -5,15 +5,16 @@ import com.google.gson.Gson;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 public class MnrApiUtil {
 
     // MNR註冊查詢
     private static final String MNR4_BACKEND_URL = "http://10.11.10.100:10000/MNR4_Backend/api/mnr/QueryEgateApplication";
-
     RestTemplate restTemplate = new RestTemplate();
-    public String MnrApi(Resident resident) {
+
+    public String mnrApi(Resident resident) {
 
         // 物件轉JSON
         String mnrParams;
@@ -35,13 +36,25 @@ public class MnrApiUtil {
 
         // 取得JSON response
         if(response.getStatusCode().is2xxSuccessful()) {
-//            System.out.println( "-----response------" + response.getBody());
-            String respBody = response.getBody();
-            return respBody;
+            return response.getBody();
         }else {
             System.out.println( "-----error------" + response.getBody());
             return null;
         }
     }
+
+    // 第二支API
+    private static final String MNR4_PERSON_URL = "http://10.11.10.100:10000/MNR4_Backend/api/mnr/QueryEgateApplicationDetail";
+    public String oneMnrApi(String travelId, String passportNo, String seqNo){
+
+        String personUrl = UriComponentsBuilder.fromHttpUrl(MNR4_PERSON_URL)
+                .queryParam("travelId", travelId)
+                .queryParam("seqNo", seqNo)
+                .queryParam("passportNo", passportNo)
+                .toUriString();
+
+        return restTemplate.getForObject(personUrl, String.class);
+    }
+
 
 }
