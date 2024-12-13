@@ -3,6 +3,7 @@ package com.demo.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.layout.StackPane;
 import java.io.IOException;
 
@@ -13,24 +14,32 @@ public class MainController {
     @FXML
     private StackPane contentArea; // 分頁顯示區域
 
+    @FXML
+    public void initialize() {
+        // 確保 contentArea 已正確初始化
+        if (contentArea == null) {
+            System.err.println("-----Error: contentArea is not initialized!");
+        }
+    }
+
     // MNR註冊查詢
     @FXML
-    protected void onMnrButtonClick() {
+    public void onMnrButtonClick() {
         loadView(MNR_REGISTER_VIEW);
     }
 
     // API接收服務
     @FXML
-    protected void onApiButtonClick() {
+    public void onApiButtonClick() {
         loadView(API_CHANGE_VIEW);
     }
 
     // 分頁加載方法
-    private void loadView(String fxmlFile) {
+    public void loadView(String fxmlFile) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-            Node page = loader.load();
-            contentArea.getChildren().setAll(page); // 清除舊內容並載入新內容
+            Parent page = loader.load(); // 加載並取得根節點
+            contentArea.getChildren().setAll(page); // 清空並替換 contentArea
         } catch (IOException e) {
             System.err.println("-----Error loading FXML:----- " + fxmlFile);
             e.printStackTrace();
