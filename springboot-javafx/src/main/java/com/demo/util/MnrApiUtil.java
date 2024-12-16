@@ -14,11 +14,8 @@ public class MnrApiUtil {
     private static final String MNR4_BACKEND_URL = "http://10.11.10.100:10000/MNR4_Backend/api/mnr/QueryEgateApplication";
     RestTemplate restTemplate = new RestTemplate();
 
-<<<<<<< HEAD
     public String MnrApi(Resident resident) {
-=======
-    public String mnrApi(Resident resident) {
->>>>>>> API2
+
 
         // 物件轉JSON
         String mnrParams;

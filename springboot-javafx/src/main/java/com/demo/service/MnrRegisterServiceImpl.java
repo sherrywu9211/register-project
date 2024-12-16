@@ -20,7 +20,7 @@ public class MnrRegisterServiceImpl implements MnrRegisterService {
     @Override
     public List<MnrResponse> selectAllMnr(Resident resident) {
         // 傳送並取得 JSON格式的回應
-        String jsonData = mnrApiUtil.mnrApi(resident);
+        String jsonData = mnrApiUtil.MnrApi(resident);
 
         // 定義泛型類型
         Type listType = new TypeToken<List<MnrResponse>>() {}.getType();

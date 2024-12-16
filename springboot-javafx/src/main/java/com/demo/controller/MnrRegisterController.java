@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-public class MnrRegisterController extends MainController {
+public class MnrRegisterController extends BaseController {
 
     @FXML
     private TextField passportNoField;
@@ -95,9 +95,6 @@ public class MnrRegisterController extends MainController {
 
     @FXML
     public void initialize(){
-        // 父類別的 initialize()
-        super.initialize();
-        // 設定 resListTableView 的點擊事件
         resListTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) { // 單擊
                 MnrResponse selectedData = resListTableView.getSelectionModel().getSelectedItem();
@@ -109,23 +106,17 @@ public class MnrRegisterController extends MainController {
         });
     }
 
-    private static final String MNR_PERSON_VIEW = "/static/views/mnrPerson.fxml";
+    private static final String MNR_PERSON_VIEW = "mnrPerson.fxml";
+    @FXML
     public void personClick(MnrResponse mnrResponse) {
-        FXMLLoader loader = null;
+//        FXMLLoader loader = null;
         try {
-            // 顯示畫面
-            loader = new FXMLLoader(getClass().getResource(MNR_PERSON_VIEW));
-            Parent root = loader.load();
-            Scene scene = new Scene(root, 400, 400);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            loadPage(MNR_PERSON_VIEW);
+//            沒處理放資料邏輯 可以在BaseController新增取得loader method
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        // 設定controller & 傳入data
-        MnrPersonController mnrPersonController = loader.getController();
-        mnrPersonController.setData(mnrResponse);
+
     }
 
 }
