@@ -18,7 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-public class MnrRegisterController extends BaseController {
+public class MnrRegisterController  {
 
     @FXML
     private TextField passportNoField;

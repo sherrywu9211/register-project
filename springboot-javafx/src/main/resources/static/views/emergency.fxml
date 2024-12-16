@@ -7,13 +7,13 @@
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.demo.controller.EmergencyController"
+      fx:controller="com.demo.controller.EmergencyReqController"
       spacing="10" style="-fx-padding: 20;">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <Label text="切換系統：" />
-    <ChoiceBox fx:id="switchSystem">
+    <ChoiceBox fx:id="switchSystemChoiceBox">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="MNR:後台系統" />
@@ -22,7 +22,7 @@
         </items>
     </ChoiceBox>
     <Label text="機場代號：" />
-    <ChoiceBox fx:id="switchLocation">
+    <ChoiceBox fx:id="switchLocationChoiceBox">
         <items>
             <FXCollections fx:factory="observableArrayList">
                 <String fx:value="00-雲端正式" />
@@ -34,9 +34,33 @@
             </FXCollections>
         </items>
     </ChoiceBox>
-
+    <Region prefHeight="10"/> <!-- 空行 -->
     <Button text="送出" onAction="#onApiButtonClick"/>
-    <Label text="處理狀態："/>
-    <Label fx:id="apiResult"/>
+    <Region prefHeight="10"/> <!-- 空行 -->
+    <Label text="【確認結果】"/>
+    <VBox xmlns="http://javafx.com/javafx/8"
+          xmlns:fx="http://javafx.com/fxml/1" spacing="10">
+        <HBox>
+            <Label text="狀態："/>
+            <Label fx:id="statusField" prefWidth="150"/>
+        </HBox>
+        <HBox>
+            <Label text="回應訊息："/>
+            <Label fx:id="messageField" prefWidth="150"/>
+        </HBox>
+        <HBox>
+            <Label text="IP："/>
+            <Label fx:id="terminalIpField" prefWidth="150"/>
+        </HBox>
+        <HBox>
+            <Label text="更新日期："/>
+            <Label fx:id="terminalTimeField" prefWidth="150"/>
+        </HBox>
+        <HBox>
+            <Label text="連線位置："/>
+            <Label fx:id="eGateLocationField" prefWidth="150"/>
+        </HBox>
+    </VBox>
+
 
 </VBox>

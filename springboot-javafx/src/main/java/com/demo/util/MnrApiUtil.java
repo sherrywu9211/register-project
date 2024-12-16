@@ -55,5 +55,15 @@ public class MnrApiUtil {
         return restTemplate.getForObject(personUrl, String.class);
     }
 
+    // 第三支API
+    private static final String MonToEnrEmergency_URL = "http://localhost:8080/MonToEnrEmergency";
+    public String changEmergencyApi(String switchSystem, String switchLocation){
+        String emergency_Url = UriComponentsBuilder.fromHttpUrl(MonToEnrEmergency_URL)
+                .queryParam("switchSystem", switchSystem)
+                .queryParam("switchLocation", switchLocation)
+                .toString();
+        // todo
+        return emergency_Url;
+    }
 
 }

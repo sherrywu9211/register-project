@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class MnrPersonController extends MainController{
+public class MnrPersonController {
 
     @FXML
     private Label systemUpdateTimeField;
