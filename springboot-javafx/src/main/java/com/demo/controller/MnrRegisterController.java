@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-public class MnrRegisterController extends MainController {
+public class MnrRegisterController extends BaseController {
 
     @FXML
     private TextField passportNoField;
@@ -96,7 +96,7 @@ public class MnrRegisterController extends MainController {
     @FXML
     public void initialize(){
         // 父類別的 initialize()
-        super.initialize();
+//        super.initialize();
         // 設定 resListTableView 的點擊事件
         resListTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) { // 單擊
@@ -110,6 +110,8 @@ public class MnrRegisterController extends MainController {
     }
 
     private static final String MNR_PERSON_VIEW = "/static/views/mnrPerson.fxml";
+//    private static final String MNR_PERSON_VIEW = "mnrPerson.fxml";
+
     public void personClick(MnrResponse mnrResponse) {
         FXMLLoader loader = null;
         try {
@@ -120,8 +122,10 @@ public class MnrRegisterController extends MainController {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+//            loadView(MNR_PERSON_VIEW);
+        } catch (Exception e) {
+//            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         // 設定controller & 傳入data
         MnrPersonController mnrPersonController = loader.getController();
