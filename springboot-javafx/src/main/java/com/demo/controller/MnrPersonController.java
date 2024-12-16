@@ -30,9 +30,9 @@ public class MnrPersonController extends MainController{
     MnrRegisterService mnrRegisterService = new MnrRegisterServiceImpl();
 
     public void setData(MnrResponse mnrResponse){
-        // todo
         // 呼叫API & 取得回應結果
-        PersonResponse personResponse = mnrRegisterService.selectOneMnr(mnrResponse.getTravelId(), mnrResponse.getPassportNo(), mnrResponse.getSeqNo());
+        PersonResponse personResponse = mnrRegisterService.selectOneMnr(
+                mnrResponse.getTravelId(), mnrResponse.getPassportNo(), mnrResponse.getSeqNo());
         // 顯示內容
         systemUpdateTimeField.setText(personResponse.getSystemUpdateTime());
         portField.setText(personResponse.getPort());
@@ -40,8 +40,7 @@ public class MnrPersonController extends MainController{
         englishNameField.setText(personResponse.getEnglishName());
         chineseNameField.setText(personResponse.getChineseName());
         genderField.setText(personResponse.getGender());
-//
-//        Image faceImage = ImageUtil.base64ToImage(personResponse.getFaceImageReg());
-//        faceImageRegField.setImage(faceImage);
+        Image faceImage = ImageUtil.base64ToImage(personResponse.getFaceImageReg());
+        faceImageRegField.setImage(faceImage);
     }
 }
