@@ -12,7 +12,7 @@
                 <userData>mnrRegister.fxml</userData>
             </Button>
             <Button text="接收API服務" onAction="#handleSwitchPage">
-                <userData>apiChange.fxml</userData>
+                <userData>emergency.fxml</userData>
             </Button>
         </HBox>
     </top>

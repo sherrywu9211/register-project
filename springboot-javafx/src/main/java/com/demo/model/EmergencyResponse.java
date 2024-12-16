@@ -1,10 +1,15 @@
 package com.demo.model;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 public class EmergencyResponse {
     private String status;
     private String message;
     private String terminalIp;
-    private int terminalTime;
+    private long terminalTime;
     private String eGateLocation;
 
     public String getStatus() {
@@ -31,8 +36,10 @@ public class EmergencyResponse {
         this.terminalIp = terminalIp;
     }
 
-    public int getTerminalTime() {
-        return terminalTime;
+    public String getTerminalTime() {
+        // 轉換 long > 日期
+        LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(terminalTime), ZoneId.systemDefault());
+        return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 
     public void setTerminalTime(int terminalTime) {

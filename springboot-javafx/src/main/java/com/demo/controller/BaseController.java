@@ -10,8 +10,6 @@ import java.io.IOException;
 
 public class BaseController {
 
-//    private static final String MNR_REGISTER_VIEW = "/static/views/mnrRegister.fxml";
-//    private static final String API_CHANGE_VIEW = "/static/views/apiChange.fxml";
     private final String basePath = "/static/views/";
 
     private StackPane contentArea; // 分頁顯示區域

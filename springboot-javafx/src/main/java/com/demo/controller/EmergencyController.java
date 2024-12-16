@@ -10,7 +10,6 @@ public class EmergencyController {
 
     @FXML
     protected void onApiButtonClick() {
-//        welcomeText.setText("[controllerText] Welcome to JavaFX Application!");
         apiResult.setText("api還沒開發完~~~~");
     }
 }
