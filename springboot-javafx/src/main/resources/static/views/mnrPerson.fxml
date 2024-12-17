@@ -38,6 +38,7 @@
     </HBox>
     <HBox>
         <Label text="辨識照："/>
-        <ImageView fx:id="faceImageRegField"/>
+        <ImageView fx:id="faceImageRegField"  fitWidth="150"
+                   fitHeight="200" preserveRatio="true" smooth="true" />
     </HBox>
 </VBox>

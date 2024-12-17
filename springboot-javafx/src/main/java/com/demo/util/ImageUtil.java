@@ -1,7 +1,6 @@
 package com.demo.util;
 
 import javafx.scene.image.Image;
-
 import java.io.ByteArrayInputStream;
 import java.util.Base64;
 

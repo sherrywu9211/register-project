@@ -4,7 +4,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import javafx.scene.image.Image;
 
 public class PersonResponse {
 
@@ -15,7 +14,6 @@ public class PersonResponse {
     private String chineseName;
     private String gender;
     private String faceImageReg;
-    private Image faceImage;
 
     public String getSystemUpdateTime() {
         // 轉換 long > 日期
@@ -66,7 +64,6 @@ public class PersonResponse {
     public void setFaceImageReg(String faceImageReg) {
         this.faceImageReg = faceImageReg;
     }
-
 
     public String getGender() {
         return gender;

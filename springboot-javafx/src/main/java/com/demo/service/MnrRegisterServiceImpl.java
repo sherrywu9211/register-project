@@ -25,7 +25,6 @@ public class MnrRegisterServiceImpl implements MnrRegisterService {
         // 定義泛型類型
         Type listType = new TypeToken<List<MnrResponse>>() {}.getType();
         String resListJson = gson.fromJson(jsonData, JsonObject.class).get("resList").toString();
-
         return gson.fromJson(resListJson, listType);
     }
 
@@ -33,7 +32,7 @@ public class MnrRegisterServiceImpl implements MnrRegisterService {
     public PersonResponse selectOneMnr(String travelId, String passportNo, String seqNo) {
         // 呼叫API & 取得回應結果
         String responseJson = mnrApiUtil.oneMnrApi(travelId, passportNo, seqNo);
-        System.out.println(responseJson);
+//        System.out.println(responseJson);
         return gson.fromJson(responseJson, PersonResponse.class);
     }
 }
