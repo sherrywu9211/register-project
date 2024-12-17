@@ -1,0 +1,39 @@
+<configuration>
+    <!-- 日誌檔案名稱前綴 -->
+    <property name="LOG_PATH" value="logs" />
+    <property name="LOG_FILE_NAME" value="register-project" />
+
+    <!-- 滾動日誌配置 -->
+    <appender name="ROLLING_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 當前日誌檔案的路徑 -->
+        <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
+
+        <!-- 滾動策略：每天產生一個新檔案 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- LOG 檔案名稱格式：yyyy-MM-dd -->
+            <fileNamePattern>${LOG_PATH}/${LOG_FILE_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <!-- 保留日誌天數 -->
+            <maxHistory>7</maxHistory>
+            <!-- 單個日誌檔案最大大小（可選） -->
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+
+        <!-- 輸出格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%t] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 控制台輸出（保持不變） -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%level] [%t] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 根日誌級別 -->
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="ROLLING_FILE" />
+    </root>
+</configuration>
