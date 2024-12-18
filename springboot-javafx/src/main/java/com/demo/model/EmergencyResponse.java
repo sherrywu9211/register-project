@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public class EmergencyResponse {
     private String status;
-    private String message;
+    private String message = "";
     private String terminalIp;
     private long terminalTime;
     private String eGateLocation;

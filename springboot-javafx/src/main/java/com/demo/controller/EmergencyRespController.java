@@ -1,27 +1,23 @@
 package com.demo.controller;
 
-import com.demo.model.EmergencyResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.demo.service.EmergencyRespService;
+import com.demo.service.EmergencyRespServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/api")
 public class EmergencyRespController {
 
+    EmergencyRespService emergencyRespService = new EmergencyRespServiceImpl();
+
+    // API URL
+    // http://localhost:8080/api/MonToEnrEmergency?switchSystem=123&switchLocation=123
 
     @GetMapping("/MonToEnrEmergency")
-    public EmergencyResponse handleEmergencyRequest(String switchSystem, String switchLocation) {
-
-        return null;
+    public String handleEmergencyRequest(String switchSystem, String switchLocation) {
+        return emergencyRespService.getRequest(switchSystem, switchLocation);
     }
-    private static final Logger logger = LoggerFactory.getLogger(EmergencyRespController.class);
 
-    @GetMapping("/")
-    public String testLog() {
-        logger.trace("這是 TRACE 日誌");
-        logger.debug("這是 DEBUG 日誌");
-        logger.info("這是 INFO 日誌");
-        logger.warn("這是 WARN 日誌");
-        logger.error("這是 ERROR 日誌");
-        return "日誌測試完成";
-    }
 }
