@@ -45,25 +45,22 @@ public class MnrApiUtil {
     // 第二支API
     private static final String MNR4_PERSON_URL = "http://10.11.10.100:10000/MNR4_Backend/api/mnr/QueryEgateApplicationDetail";
     public String oneMnrApi(String travelId, String passportNo, String seqNo){
-
         String personUrl = UriComponentsBuilder.fromHttpUrl(MNR4_PERSON_URL)
                 .queryParam("travelId", travelId)
                 .queryParam("seqNo", seqNo)
                 .queryParam("passportNo", passportNo)
                 .toUriString();
-
         return restTemplate.getForObject(personUrl, String.class);
     }
 
     // 第三支API
-    private static final String MonToEnrEmergency_URL = "http://localhost:8080/MonToEnrEmergency";
+    private static final String MonToEnrEmergency_URL = "http://localhost:8080/api/MonToEnrEmergency";
     public String changEmergencyApi(String switchSystem, String switchLocation){
         String emergency_Url = UriComponentsBuilder.fromHttpUrl(MonToEnrEmergency_URL)
                 .queryParam("switchSystem", switchSystem)
                 .queryParam("switchLocation", switchLocation)
-                .toString();
-        // todo
-        return emergency_Url;
+                .toUriString();
+        return restTemplate.getForObject(emergency_Url, String.class);
     }
 
 }
