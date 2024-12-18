@@ -5,6 +5,7 @@ import com.demo.service.EmergencyService;
 import com.demo.service.EmergencyServiceImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 
 public class EmergencyReqController {
 
@@ -16,15 +17,29 @@ public class EmergencyReqController {
     EmergencyService emergencyService = new EmergencyServiceImpl();
 
     @FXML
-    protected void onApiButtonClick() {
+    private Label statusField;
+    @FXML
+    private Label messageField;
+    @FXML
+    private Label terminalIpField;
+    @FXML
+    private Label terminalTimeField;
+    @FXML
+    private Label eGateLocationField;
 
+    @FXML
+    protected void onApiButtonClick() {
+        // 取得選項值
         String switchSystem = switchSystemChoiceBox.getValue();
         String switchLocation = switchLocationChoiceBox.getValue();
+        // 傳送參數
         EmergencyResponse emergencyResponse = emergencyService.changeStatus(switchSystem, switchLocation);
-        // 顯示值
-        // todo
-
+        // VIEW顯示值
+        statusField.setText(emergencyResponse.getStatus());
+        messageField.setText(emergencyResponse.getMessage());
+        terminalIpField.setText(emergencyResponse.getTerminalIp());
+        terminalTimeField.setText(emergencyResponse.getTerminalTime());
+        eGateLocationField.setText(emergencyResponse.geteGateLocation());
     }
-
 
 }

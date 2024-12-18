@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.demo.model.EmergencyResponse;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 

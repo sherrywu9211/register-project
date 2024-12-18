@@ -16,8 +16,8 @@
     <ChoiceBox fx:id="switchSystemChoiceBox">
         <items>
             <FXCollections fx:factory="observableArrayList">
-                <String fx:value="MNR:後台系統" />
-                <String fx:value="CHECK:現在連線位置" />
+                <String fx:value="MNR" />
+                <String fx:value="CHECK" />
             </FXCollections>
         </items>
     </ChoiceBox>
@@ -36,6 +36,7 @@
     </ChoiceBox>
     <Region prefHeight="10"/> <!-- 空行 -->
     <Button text="送出" onAction="#onApiButtonClick"/>
+
     <Region prefHeight="10"/> <!-- 空行 -->
     <Label text="【確認結果】"/>
     <VBox xmlns="http://javafx.com/javafx/8"
