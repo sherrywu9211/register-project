@@ -12,10 +12,9 @@ import javafx.scene.layout.StackPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Paths;
 
 public class BaseController {
 
@@ -47,8 +46,12 @@ public class BaseController {
     public static String getLocation(){
         String location = "";
         try {
-            FileReader fileReader = new FileReader(LOCATION_PATH);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+//            FileReader fileReader = new FileReader(LOCATION_PATH);
+            InputStreamReader isr = new InputStreamReader(new FileInputStream(String.valueOf(Paths.get(LOCATION_PATH))), StandardCharsets.UTF_8);
+            BufferedReader bufferedReader = new BufferedReader(isr);
+//            InputStreamReader reader = new InputStreamReader(
+//                    Files.newInputStream(Paths.get(LOCATION_PATH)), StandardCharsets.UTF_8);
 
             Gson gson = new Gson();
             JsonObject jsonObject = gson.fromJson(bufferedReader, JsonObject.class);
