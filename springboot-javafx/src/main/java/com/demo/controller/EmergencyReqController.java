@@ -3,9 +3,11 @@ package com.demo.controller;
 import com.demo.model.EmergencyResponse;
 import com.demo.service.EmergencyService;
 import com.demo.service.EmergencyServiceImpl;
+import com.demo.util.GateLocationUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+
 
 public class EmergencyReqController {
 
@@ -27,8 +29,17 @@ public class EmergencyReqController {
     @FXML
     private Label eGateLocationField;
 
+
     @FXML
-    protected void onApiButtonClick() {
+    private Label currentGateLocationField;
+
+    @FXML
+    private void initialize() {
+        currentGateLocationField.setText( GateLocationUtil.getLocation());
+    }
+
+    @FXML
+    private void onApiButtonClick() {
         // 取得選項值
         String switchSystem = switchSystemChoiceBox.getValue();
         String switchLocation = switchLocationChoiceBox.getValue();
@@ -40,6 +51,7 @@ public class EmergencyReqController {
         terminalIpField.setText(emergencyResponse.getTerminalIp());
         terminalTimeField.setText(emergencyResponse.getTerminalTime());
         eGateLocationField.setText(emergencyResponse.geteGateLocation());
+        currentGateLocationField.setText(GateLocationUtil.getLocation());
     }
 
 }
