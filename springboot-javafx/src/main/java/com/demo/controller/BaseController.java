@@ -1,6 +1,5 @@
 package com.demo.controller;
 
-import com.demo.model.EmergencyResponse;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
@@ -11,25 +10,27 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.*;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class BaseController {
 
-    private final String basePath = "/static/views/";
+    private final String BASE_Path = "/static/views/";
 
     private StackPane contentArea; // 分頁顯示區域
     public void setContentPane(StackPane contentPane) {
         this.contentArea = contentPane;
     }
-    private static final Logger logger = LoggerFactory.getLogger(BaseController.class);
+
+    public static final Logger logger = LoggerFactory.getLogger(BaseController.class);
 
     // 分頁加載方法
     public void loadView(String fxmlFile) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource( basePath + fxmlFile));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource( BASE_Path + fxmlFile));
             Pane page = loader.load(); // 加載並取得根節點
             contentArea.getChildren().clear(); // 清除 現有的子節點。
             contentArea.getChildren().add(page); // 將page 節點 加到 contentArea 。
@@ -45,19 +46,17 @@ public class BaseController {
     private static final String LOCATION_PATH = "src/config/eGateLocation.json";
     public static String getLocation(){
         String location = "";
-        try {
-
-//            FileReader fileReader = new FileReader(LOCATION_PATH);
-            InputStreamReader isr = new InputStreamReader(new FileInputStream(String.valueOf(Paths.get(LOCATION_PATH))), StandardCharsets.UTF_8);
-            BufferedReader bufferedReader = new BufferedReader(isr);
-//            InputStreamReader reader = new InputStreamReader(
-//                    Files.newInputStream(Paths.get(LOCATION_PATH)), StandardCharsets.UTF_8);
+        try (
+            InputStreamReader isr = new InputStreamReader(Files.newInputStream(Paths.get(LOCATION_PATH)),  StandardCharsets.UTF_8 )
+        ) {
 
             Gson gson = new Gson();
-            JsonObject jsonObject = gson.fromJson(bufferedReader, JsonObject.class);
+            JsonObject jsonObject = gson.fromJson(isr, JsonObject.class);
             location = jsonObject.get("eGateLocation").getAsString();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+
+        } catch (IOException e) {
+            System.err.println("-----Error getLocation()-----");
+            logger.error(e.getMessage(), e);
         }
         return location;
     }

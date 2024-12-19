@@ -12,6 +12,8 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
+    <Label text="目前位置：" />
+    <Label fx:id="currentGateLocationField" />
     <Label text="切換系統：" />
     <ChoiceBox fx:id="switchSystemChoiceBox">
         <items>
