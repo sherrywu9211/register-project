@@ -13,12 +13,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-public class MnrRegisterController  {
+public class MnrRegisterController {
+
+    public static final Logger logger = LoggerFactory.getLogger(MnrRegisterController.class);
 
     @FXML
     private TextField passportNoField;
@@ -106,7 +110,6 @@ public class MnrRegisterController  {
     }
 
     private static final String MNR_PERSON_VIEW = "/static/views/mnrPerson.fxml";
-//    private static final String MNR_PERSON_VIEW = "mnrPerson.fxml";
     public void personClick(MnrResponse mnrResponse) {
         FXMLLoader loader = null;
         try {
@@ -118,7 +121,8 @@ public class MnrRegisterController  {
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("-----Error personClick-----");
+            logger.error(e.getMessage(), e);
         }
         // 設定controller & 傳入data
         MnrPersonController mnrPersonController = loader.getController();

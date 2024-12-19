@@ -2,7 +2,10 @@ package com.demo.service;
 
 import com.demo.controller.BaseController;
 import com.demo.model.EmergencyResponse;
+import com.demo.model.GateLocation;
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -10,15 +13,22 @@ import java.util.List;
 
 public class EmergencyRespServiceImpl implements EmergencyRespService {
 
-    private static final List<String> VALID_LOCATIONS = Arrays.asList("00", "01", "02", "11", "12", "13");
+    public static final Logger logger = LoggerFactory.getLogger(EmergencyRespServiceImpl.class);
+
+    private static final List<String> VALID_LOCATIONS = Arrays.asList("00-雲端正式", "01-桃園機場第一航廈", "02-高雄小港機場", "11-台北松山機場", "12-桃園機場第二航廈", "13-金門港");
     Gson gson = new Gson();
 
     @Override
     public String getRequest(String switchSystem, String switchLocation) {
-
         EmergencyResponse emergencyReq = new EmergencyResponse();
-        emergencyReq.seteGateLocation(BaseController.getLocation());
-        System.out.println( "-------1----emergencyReq--location:"+ emergencyReq.geteGateLocation());
+
+        // 取得目前的位置
+        // 從設定檔取得位置 並設定至 currentGateLocation全域變數
+        GateLocation.setCurrentGateLocation(BaseController.getLocation());
+        String currentGateLocation = GateLocation.getCurrentGateLocation();
+
+//        emergencyReq.seteGateLocation(BaseController.getLocation());
+//        System.out.println( "-------1----emergencyReq--location:"+ emergencyReq.geteGateLocation());
 
         EmergencyResponse emergencyResp = new EmergencyResponse();
 
@@ -30,35 +40,40 @@ public class EmergencyRespServiceImpl implements EmergencyRespService {
             // 取得本機的 IP 位址
             ip = localHost.getHostAddress();
         } catch (UnknownHostException e) {
-            System.out.println("無法取得本機的 IP 位址");
-            e.printStackTrace();
+            System.err.println("無法取得本機的 IP 位址");
+            logger.error(e.getMessage(), e);
         }
         emergencyResp.setTerminalIp(ip);
         int timestamp = (int) (System.currentTimeMillis() / 1000);
         emergencyResp.setTerminalTime(timestamp);
 
         // todo  取得location
-        if(!switchSystem.equals("CHECK") && !switchSystem.equals("MNR")) {
+        if(!switchSystem.equals("MNR") && !switchSystem.equals("CHECK") ) {
             emergencyResp.setStatus("false");
-            // todo  set msg
-            emergencyResp.setMessage("請求參數錯誤");
+            emergencyResp.setMessage("系統選項錯誤");
         } else if(switchSystem.equals("MNR")) {
-            if( !VALID_LOCATIONS.contains(switchLocation) && !switchLocation.equals(emergencyReq.geteGateLocation()) ) {
+            if( VALID_LOCATIONS.contains(switchLocation) && !switchLocation.equals(currentGateLocation) ) {
                 // MNR & 切換為不同的location
                 emergencyResp.setStatus("true");
+                // 設定 全域變數的值
+                GateLocation.setCurrentGateLocation(switchLocation);
+                // TODO 設定 設定檔的值
+
+                // TODO 從設定檔的值 拿出來顯示
                 emergencyResp.seteGateLocation(switchLocation);
             }else {
                 emergencyResp.setStatus("false");
-                emergencyResp.setMessage("切換機場代號錯誤");
+                emergencyResp.setMessage("機場代號錯誤");
             }
             // todo
-        }else if (switchSystem.equals("CHECK")){
+        }else if(switchSystem.equals("CHECK")){
             // 回覆現在連線位置，switchLocation 不更改
             emergencyResp.setStatus("true");
-            emergencyResp.seteGateLocation(emergencyReq.geteGateLocation());
+            // 回覆目前的位置
+            emergencyResp.seteGateLocation(currentGateLocation);
         }
 
         // 轉為json 回傳
-        return  gson.toJson(emergencyResp);
+        return gson.toJson(emergencyResp);
     }
 }
