@@ -12,30 +12,38 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-    <Label text="目前位置：" />
-    <Label fx:id="currentGateLocationField" />
-    <Label text="切換系統：" />
-    <ChoiceBox fx:id="switchSystemChoiceBox">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="MNR" />
-                <String fx:value="CHECK" />
-            </FXCollections>
-        </items>
-    </ChoiceBox>
-    <Label text="機場代號：" />
-    <ChoiceBox fx:id="switchLocationChoiceBox">
-        <items>
-            <FXCollections fx:factory="observableArrayList">
-                <String fx:value="00-雲端正式" />
-                <String fx:value="01-桃園機場第一航廈" />
-                <String fx:value="02-高雄小港機場" />
-                <String fx:value="11-台北松山機場" />
-                <String fx:value="12-桃園機場第二航廈" />
-                <String fx:value="13-金門港" />
-            </FXCollections>
-        </items>
-    </ChoiceBox>
+    <HBox>
+        <Label text="【 目前位置：" />
+        <Label fx:id="currentGateLocationField" />
+        <Label text=" 】" />
+    </HBox>
+    <Region prefHeight="20"/> <!-- 空行 -->
+    <HBox>
+        <Label text="切換系統：" />
+        <ChoiceBox fx:id="switchSystemChoiceBox">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="MNR" />
+                    <String fx:value="CHECK" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+    </HBox>
+    <HBox>
+        <Label text="機場代號：" />
+        <ChoiceBox fx:id="switchLocationChoiceBox">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="00-雲端正式" />
+                    <String fx:value="01-桃園機場第一航廈" />
+                    <String fx:value="02-高雄小港機場" />
+                    <String fx:value="11-台北松山機場" />
+                    <String fx:value="12-桃園機場第二航廈" />
+                    <String fx:value="13-金門港" />
+                </FXCollections>
+            </items>
+        </ChoiceBox>
+    </HBox>
     <Region prefHeight="10"/> <!-- 空行 -->
     <Button text="送出" onAction="#onApiButtonClick"/>
 

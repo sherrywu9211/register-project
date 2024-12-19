@@ -3,6 +3,7 @@ package com.demo.service;
 import com.demo.controller.BaseController;
 import com.demo.model.EmergencyResponse;
 import com.demo.model.GateLocation;
+import com.demo.util.GateLocationUtil;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,6 @@ import java.util.List;
 public class EmergencyRespServiceImpl implements EmergencyRespService {
 
     public static final Logger logger = LoggerFactory.getLogger(EmergencyRespServiceImpl.class);
-
     private static final List<String> VALID_LOCATIONS = Arrays.asList("00-雲端正式", "01-桃園機場第一航廈", "02-高雄小港機場", "11-台北松山機場", "12-桃園機場第二航廈", "13-金門港");
     Gson gson = new Gson();
 
@@ -24,7 +24,7 @@ public class EmergencyRespServiceImpl implements EmergencyRespService {
 
         // 取得目前的位置
         // 從設定檔取得位置 並設定至 currentGateLocation全域變數
-        GateLocation.setCurrentGateLocation(BaseController.getLocation());
+        GateLocation.setCurrentGateLocation(GateLocationUtil.getLocation());
         String currentGateLocation = GateLocation.getCurrentGateLocation();
 
 //        emergencyReq.seteGateLocation(BaseController.getLocation());
@@ -47,7 +47,6 @@ public class EmergencyRespServiceImpl implements EmergencyRespService {
         int timestamp = (int) (System.currentTimeMillis() / 1000);
         emergencyResp.setTerminalTime(timestamp);
 
-        // todo  取得location
         if(!switchSystem.equals("MNR") && !switchSystem.equals("CHECK") ) {
             emergencyResp.setStatus("false");
             emergencyResp.setMessage("系統選項錯誤");
@@ -57,15 +56,14 @@ public class EmergencyRespServiceImpl implements EmergencyRespService {
                 emergencyResp.setStatus("true");
                 // 設定 全域變數的值
                 GateLocation.setCurrentGateLocation(switchLocation);
-                // TODO 設定 設定檔的值
-
-                // TODO 從設定檔的值 拿出來顯示
-                emergencyResp.seteGateLocation(switchLocation);
+                // 設定 設定檔的值
+                GateLocationUtil.setLocation(GateLocation.getCurrentGateLocation());
+                // 從設定檔的值 拿出來顯示
+                emergencyResp.seteGateLocation(GateLocationUtil.getLocation());
             }else {
                 emergencyResp.setStatus("false");
                 emergencyResp.setMessage("機場代號錯誤");
             }
-            // todo
         }else if(switchSystem.equals("CHECK")){
             // 回覆現在連線位置，switchLocation 不更改
             emergencyResp.setStatus("true");
