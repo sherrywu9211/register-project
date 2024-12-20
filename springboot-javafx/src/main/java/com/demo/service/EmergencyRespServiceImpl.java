@@ -14,7 +14,7 @@ import java.util.List;
 public class EmergencyRespServiceImpl implements EmergencyRespService {
 
     public static final Logger logger = LoggerFactory.getLogger(EmergencyRespServiceImpl.class);
-    private static final List<String> VALID_LOCATIONS = Arrays.asList("00-雲端正式", "01-桃園機場第一航廈", "02-高雄小港機場", "11-台北松山機場", "12-桃園機場第二航廈", "13-金門港");
+    private static final List<String> VALID_LOCATIONS = Arrays.asList("00", "01", "02", "11", "12", "13");
     Gson gson = new Gson();
 
     @Override
@@ -42,28 +42,35 @@ public class EmergencyRespServiceImpl implements EmergencyRespService {
         int timestamp = (int) (System.currentTimeMillis() / 1000);
         emergencyResp.setTerminalTime(timestamp);
 
-        if(!switchSystem.equals("MNR") && !switchSystem.equals("CHECK") ) {
-            emergencyResp.setStatus("false");
-            emergencyResp.setMessage("系統選項錯誤");
-        } else if(switchSystem.equals("MNR")) {
-            if( VALID_LOCATIONS.contains(switchLocation) && !switchLocation.equals(currentGateLocation) ) {
-                // MNR & 切換為不同的location
+        // 處理null
+        switchSystem = (switchSystem == null || switchSystem.isEmpty()) ? "" : switchSystem;
+
+        switch (switchSystem){
+            case "MNR":
+                if (VALID_LOCATIONS.contains(switchLocation) && !switchLocation.equals(currentGateLocation)) {
+                    // MNR & 切換為不同的location
+                    emergencyResp.setStatus("true");
+                    // 設定 全域變數的值
+                    GateLocation.setCurrentGateLocation(switchLocation);
+                    // 設定 設定檔的值
+                    GateLocationUtil.setLocation(GateLocation.getCurrentGateLocation());
+                    // 從設定檔的值 拿出來顯示
+                    emergencyResp.seteGateLocation(GateLocationUtil.getLocation());
+                } else {
+                    emergencyResp.setStatus("false");
+                    emergencyResp.setMessage("機場代碼錯誤");
+                }
+                break;
+            case "CHECK":
+                // 回覆現在連線位置，switchLocation 不更改
                 emergencyResp.setStatus("true");
-                // 設定 全域變數的值
-                GateLocation.setCurrentGateLocation(switchLocation);
-                // 設定 設定檔的值
-                GateLocationUtil.setLocation(GateLocation.getCurrentGateLocation());
-                // 從設定檔的值 拿出來顯示
-                emergencyResp.seteGateLocation(GateLocationUtil.getLocation());
-            }else {
+                // 回覆目前的位置
+                emergencyResp.seteGateLocation(currentGateLocation);
+                break;
+            default:
                 emergencyResp.setStatus("false");
-                emergencyResp.setMessage("機場代號錯誤");
-            }
-        }else if(switchSystem.equals("CHECK")){
-            // 回覆現在連線位置，switchLocation 不更改
-            emergencyResp.setStatus("true");
-            // 回覆目前的位置
-            emergencyResp.seteGateLocation(currentGateLocation);
+                emergencyResp.setMessage("系統代碼錯誤");
+                break;
         }
 
         // 轉為json 回傳

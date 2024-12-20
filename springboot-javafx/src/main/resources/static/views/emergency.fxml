@@ -40,6 +40,12 @@
                     <String fx:value="11-台北松山機場" />
                     <String fx:value="12-桃園機場第二航廈" />
                     <String fx:value="13-金門港" />
+<!--                    <String fx:value="00" />-->
+<!--                    <String fx:value="01" />-->
+<!--                    <String fx:value="02" />-->
+<!--                    <String fx:value="11" />-->
+<!--                    <String fx:value="12" />-->
+<!--                    <String fx:value="13" />-->
                 </FXCollections>
             </items>
         </ChoiceBox>
