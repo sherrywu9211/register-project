@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 
 public class MnrResponse {
 
-    // 回應參數
     private long systemUpdateTime;
     private int port;
     private String passportNo;
