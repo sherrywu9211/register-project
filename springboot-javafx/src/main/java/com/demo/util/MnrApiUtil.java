@@ -10,6 +10,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Component
 public class MnrApiUtil {
 
@@ -85,12 +92,41 @@ public class MnrApiUtil {
         logger.info("--API 3 Request-- : " + entity);
         logger.info("--API 3 Response-- : " + response);
 
+        // 儲存為JSON檔
+        saveEmergencyRecord(mnrParams, "request_");
+        saveEmergencyRecord(response.getBody() , "response_");
+
         // 取得JSON response
         if(response.getStatusCode().is2xxSuccessful()) {
             return response.getBody();
         }else {
             logger.error("-----error------" + response.getBody());
             return null;
+        }
+    }
+
+    // 存入第三支API的JSON檔
+    private static final String EMERGENCY_RECORD_URL = "emergency_api_record";
+    public static void saveEmergencyRecord(String jsonParams, String reqOrResp){
+        // 取日期
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
+        String timestamp = now.format(formatter);
+
+        // 設定匯出檔案
+        String file = reqOrResp + timestamp + ".json";
+        Path path = Paths.get(EMERGENCY_RECORD_URL);
+        Path filePath = path.resolve(file);
+
+        try {
+            // 確保目錄存在
+            if (!Files.exists(path)) {
+                Files.createDirectories(path);
+            }
+            // 將 JSON 資料寫入檔案
+            Files.write(filePath, jsonParams.getBytes());
+        } catch (IOException e) {
+            logger.error("-----error------" + e.getMessage());
         }
     }
 

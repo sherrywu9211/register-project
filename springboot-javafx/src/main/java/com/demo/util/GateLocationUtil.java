@@ -16,6 +16,7 @@ public class GateLocationUtil {
     private static final Gson gson = new Gson();
     private static final String LOCATION_PATH = "src/config/eGateLocation.json";
 
+    // Location code轉換name
     public static String getLocationNameByCode(String location) {
         // 處理null
         location = (location == null || location.isEmpty()) ? "" : location;
@@ -34,9 +35,10 @@ public class GateLocationUtil {
             case "13":
                 return "13-金門港";
             default:
-                return "機場代碼錯誤";
+                return "";
         }
     };
+    // Location name轉換code
     public static String getCodeByLocationName(String location) {
         // 處理null
         location = (location == null || location.isEmpty()) ? "" : location;
@@ -55,7 +57,7 @@ public class GateLocationUtil {
             case "13-金門港":
                 return "13";
             default:
-                return "機場代碼錯誤";
+                return "";
         }
     };
 
@@ -90,7 +92,5 @@ public class GateLocationUtil {
             logger.error(e.getMessage(), e);
         }
     }
-
-
 
 }
