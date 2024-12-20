@@ -31,7 +31,6 @@ public class BaseController {
                 ((BaseController) loader.getController()).setContentPane(contentArea);
             }
         } catch (IOException e) {
-            System.err.println("-----Error loading FXML:----- " + fxmlFile);
             logger.error(e.getMessage(), e);
         }
     }

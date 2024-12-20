@@ -18,7 +18,8 @@ public class EmergencyRespController {
     // http://localhost:8080/api/MonToEnrEmergency
     @PostMapping("/MonToEnrEmergency")
     public String handleEmergencyRequest(@RequestBody EmergencyRequest emergencyRequest) {
-        return emergencyRespService.getRequest(emergencyRequest.getSwitchSystem(), emergencyRequest.getSwitchLocation());
+        return emergencyRespService.getRequest(
+                emergencyRequest.getSwitchSystem(), emergencyRequest.getSwitchLocation());
     }
 
 }

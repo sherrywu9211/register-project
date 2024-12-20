@@ -20,7 +20,6 @@
     <!-- 中央分頁區域 -->
     <center>
         <StackPane fx:id="contentArea" style="-fx-padding: 10;">
-            <!-- 預設顯示 -->
             <Label text="歡迎來到主頁！請點選左上方選項" />
         </StackPane>
     </center>

@@ -4,13 +4,9 @@ import com.demo.model.EmergencyResponse;
 import com.demo.service.EmergencyReqService;
 import com.demo.service.EmergencyReqServiceImpl;
 import com.demo.util.GateLocationUtil;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-
-import java.util.Arrays;
 
 public class EmergencyReqController {
 
@@ -38,17 +34,6 @@ public class EmergencyReqController {
         String currentGateLocation = GateLocationUtil.getLocation();
         // code轉換文字
         currentGateLocationField.setText( GateLocationUtil.getLocationNameByCode(currentGateLocation));
-//
-        // 假設你已經將選項填充到 ChoiceBox 中，並且顯示的是如 "00-雲端正式"
-        switchLocationChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                String selectedCode = newValue.split("-")[0];  // 取得代號部分
-//                System.out.println("選擇的代號是: " + selectedCode);
-            }
-        });
-
-
-
     }
 
     // 點擊按鈕 切換或回覆目前位置

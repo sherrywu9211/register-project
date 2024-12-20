@@ -16,9 +16,8 @@ public class EmergencyReqServiceImpl implements EmergencyReqService {
         EmergencyRequest emergencyRequest = new EmergencyRequest();
         emergencyRequest.setSwitchSystem(switchSystem);
         emergencyRequest.setSwitchLocation(switchLocation);
-
+        // 呼叫API & 取得回應結果
         String jsonResponse = mnrApiUtil.changEmergencyApi(emergencyRequest);
-
         return gson.fromJson(jsonResponse, EmergencyResponse.class);
     }
 
