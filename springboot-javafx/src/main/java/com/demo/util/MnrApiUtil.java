@@ -1,7 +1,7 @@
 package com.demo.util;
 
+import com.demo.model.EmergencyRequest;
 import com.demo.model.Resident;
-import com.demo.service.EmergencyRespServiceImpl;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,6 @@ public class MnrApiUtil {
             Gson gson = new Gson();
             mnrParams = gson.toJson(resident);
         } catch (Exception e) {
-//            throw new RuntimeException(e);
             logger.error("-----error------" + e.getMessage(), e);
         }
 
@@ -65,15 +64,34 @@ public class MnrApiUtil {
 
     // 第三支API
     private static final String MonToEnrEmergency_URL = "http://localhost:8080/api/MonToEnrEmergency";
-    public String changEmergencyApi(String switchSystem, String switchLocation){
-        String emergency_Url = UriComponentsBuilder.fromHttpUrl(MonToEnrEmergency_URL)
-                .queryParam("switchSystem", switchSystem)
-                .queryParam("switchLocation", switchLocation)
-                .toUriString();
-        String result = restTemplate.getForObject(emergency_Url, String.class);
-        logger.info("--API 3 Request url-- : " + emergency_Url);
-        logger.info("--API 3 Response-- : " + result);
-        return result;
+    public String changEmergencyApi(EmergencyRequest emergencyRequest){
+
+        // 物件轉JSON
+        String mnrParams= "";
+        try {
+            Gson gson = new Gson();
+            mnrParams = gson.toJson(emergencyRequest);
+        } catch (Exception e) {
+            logger.error("-----error------" + e.getMessage(), e);
+        }
+        // 設定API headers &　參數
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<>(mnrParams, headers);
+        // API 傳送參數 & 回傳參數
+        ResponseEntity<String> response = restTemplate.postForEntity(
+                MonToEnrEmergency_URL, entity, String.class
+        );
+        logger.info("--API 3 Request-- : " + entity);
+        logger.info("--API 3 Response-- : " + response);
+
+        // 取得JSON response
+        if(response.getStatusCode().is2xxSuccessful()) {
+            return response.getBody();
+        }else {
+            logger.error("-----error------" + response.getBody());
+            return null;
+        }
     }
 
 }
