@@ -1,6 +1,5 @@
 package com.demo.service;
 
-import com.demo.controller.BaseController;
 import com.demo.model.EmergencyResponse;
 import com.demo.model.GateLocation;
 import com.demo.util.GateLocationUtil;
@@ -20,19 +19,15 @@ public class EmergencyRespServiceImpl implements EmergencyRespService {
 
     @Override
     public String getRequest(String switchSystem, String switchLocation) {
-        EmergencyResponse emergencyReq = new EmergencyResponse();
+
+        EmergencyResponse emergencyResp = new EmergencyResponse();
 
         // 取得目前的位置
         // 從設定檔取得位置 並設定至 currentGateLocation全域變數
         GateLocation.setCurrentGateLocation(GateLocationUtil.getLocation());
         String currentGateLocation = GateLocation.getCurrentGateLocation();
 
-//        emergencyReq.seteGateLocation(BaseController.getLocation());
-//        System.out.println( "-------1----emergencyReq--location:"+ emergencyReq.geteGateLocation());
-
-        EmergencyResponse emergencyResp = new EmergencyResponse();
-
-        // 固定回傳的內容
+        // 固定回傳的內容 ip & timestamp
         String ip = "";
         try {
             // 取得本機的 InetAddress 物件

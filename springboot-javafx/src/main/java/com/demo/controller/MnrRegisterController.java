@@ -24,6 +24,7 @@ public class MnrRegisterController {
 
     public static final Logger logger = LoggerFactory.getLogger(MnrRegisterController.class);
 
+    // 第一支API使用的FXML欄位
     @FXML
     private TextField passportNoField;
     @FXML
@@ -39,6 +40,7 @@ public class MnrRegisterController {
 
     MnrRegisterService mnrRegisterService = new MnrRegisterServiceImpl();
 
+    // 第二支API使用的FXML欄位
     @FXML
     private TableView<MnrResponse> resListTableView;
     @FXML
@@ -54,10 +56,10 @@ public class MnrRegisterController {
     @FXML
     private TableColumn<MnrResponse, String> applyDateColumn;
 
-    // 第一支api
+    // 第一支API
     @FXML
     public void selectAllButtonClick() {
-        // 接收api回應參數 並顯示結果
+        // 接收API回應參數 並顯示結果
         Resident resident = new Resident();
 
         if(!(passportNoField.getText().isEmpty())){
@@ -80,7 +82,7 @@ public class MnrRegisterController {
             resident.setApplyDateE(applyDateEField.getValue().format(formatter));
         }
 
-        // 呼叫api方法
+        // 呼叫API方法
         List<MnrResponse> resList = mnrRegisterService.selectAllMnr(resident);
         // 顯示註冊者資料
         systemUpdateTimeColumn.setCellValueFactory(new PropertyValueFactory<>("systemUpdateTime"));
@@ -95,9 +97,9 @@ public class MnrRegisterController {
         resListTableView.setItems(data);
     }
 
+    // 第二支API resListTableView 的點擊事件
     @FXML
     public void initialize(){
-        // 設定 resListTableView 的點擊事件
         resListTableView.setOnMouseClicked(event -> {
             if (event.getClickCount() == 1) { // 單擊
                 MnrResponse selectedData = resListTableView.getSelectionModel().getSelectedItem();
@@ -108,7 +110,7 @@ public class MnrRegisterController {
             }
         });
     }
-
+    // 第二支API 點擊TABLE的單筆DATA視窗
     private static final String MNR_PERSON_VIEW = "/static/views/mnrPerson.fxml";
     public void personClick(MnrResponse mnrResponse) {
         FXMLLoader loader = null;
