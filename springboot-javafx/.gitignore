@@ -33,8 +33,6 @@ build/
 .vscode/
 
 # 忽略 檔案
-springboot-javafx/logs/**
-#springboot-javafx/emergency_api_record/**
-#springboot-javafx/src/config/eGateLocation.json
 emergency_api_record/**
-src/config/*.json
+springboot-javafx/logs/**
+springboot-javafx/config/eGateLocation.json
