@@ -14,7 +14,7 @@ public class GateLocationUtil {
 
     public static final Logger logger = LoggerFactory.getLogger(GateLocationUtil.class);
     private static final Gson gson = new Gson();
-    private static final String LOCATION_PATH = "src/config/eGateLocation.json";
+    private static final String LOCATION_PATH = "config/eGateLocation.json";
 
     // Location code轉換name
     public static String getLocationNameByCode(String location) {
