@@ -32,8 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-# 忽略 log檔
+# 忽略 檔案
 springboot-javafx/logs/**
-
-# 忽略 特定檔案
+springboot-javafx/emergency_api_record/**
 springboot-javafx/src/config/eGateLocation.json
