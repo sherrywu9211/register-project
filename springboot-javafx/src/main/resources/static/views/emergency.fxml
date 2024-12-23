@@ -72,6 +72,4 @@
             <Label fx:id="eGateLocationField" prefWidth="150"/>
         </HBox>
     </VBox>
-
-
 </VBox>
