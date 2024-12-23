@@ -37,4 +37,4 @@ springboot-javafx/logs/**
 #springboot-javafx/emergency_api_record/**
 #springboot-javafx/src/config/eGateLocation.json
 emergency_api_record/**
-src/config/**
+src/config/*.json
