@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# 忽略
+springboot-javafx/logs/**
+springboot-javafx/emergency_api_record/**
+springboot-javafx/src/config/eGateLocation.json
