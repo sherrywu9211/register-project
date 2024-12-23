@@ -14,6 +14,9 @@
             <Button text="接收API服務" onAction="#handleSwitchPage">
                 <userData>emergency.fxml</userData>
             </Button>
+            <Button text="系統連線服務" onAction="#handleSwitchPage">
+                <userData>connect.fxml</userData>
+            </Button>
         </HBox>
     </top>
 
