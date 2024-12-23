@@ -6,11 +6,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import java.io.*;
 
 public class BaseController {
 
-    private final String basePath = "/static/views/";
+    public static final Logger logger = LoggerFactory.getLogger(BaseController.class);
+    private final String BASE_PATH = "/static/views/";
 
     private StackPane contentArea; // 分頁顯示區域
     public void setContentPane(StackPane contentPane) {
@@ -20,7 +23,7 @@ public class BaseController {
     // 分頁加載方法
     public void loadView(String fxmlFile) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource( basePath + fxmlFile));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource( BASE_PATH + fxmlFile));
             Pane page = loader.load(); // 加載並取得根節點
             contentArea.getChildren().clear(); // 清除 現有的子節點。
             contentArea.getChildren().add(page); // 將page 節點 加到 contentArea 。
@@ -28,8 +31,7 @@ public class BaseController {
                 ((BaseController) loader.getController()).setContentPane(contentArea);
             }
         } catch (IOException e) {
-            System.err.println("-----Error loading FXML:----- " + fxmlFile);
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 

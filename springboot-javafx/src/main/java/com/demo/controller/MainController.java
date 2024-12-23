@@ -11,7 +11,6 @@ public class MainController extends BaseController {
     @FXML
     public void initialize() {
         setContentPane(contentArea);
-//        loadView("main.fxml");
     }
 
 }

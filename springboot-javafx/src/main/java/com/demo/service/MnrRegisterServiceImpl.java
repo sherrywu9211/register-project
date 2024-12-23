@@ -32,7 +32,6 @@ public class MnrRegisterServiceImpl implements MnrRegisterService {
     public PersonResponse selectOneMnr(String travelId, String passportNo, String seqNo) {
         // 呼叫API & 取得回應結果
         String responseJson = mnrApiUtil.oneMnrApi(travelId, passportNo, seqNo);
-//        System.out.println(responseJson);
         return gson.fromJson(responseJson, PersonResponse.class);
     }
 }

@@ -5,11 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication
-public class MainApp extends Application{
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+public class MainApp extends Application {
+
 	private ConfigurableApplicationContext springContext;
 
 	@Override

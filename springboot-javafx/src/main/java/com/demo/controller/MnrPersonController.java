@@ -43,4 +43,5 @@ public class MnrPersonController {
         Image faceImage = ImageUtil.base64ToImage(personResponse.getFaceImageReg());
         faceImageRegField.setImage(faceImage);
     }
+
 }

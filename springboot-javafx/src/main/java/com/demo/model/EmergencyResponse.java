@@ -7,9 +7,9 @@ import java.time.format.DateTimeFormatter;
 
 public class EmergencyResponse {
     private String status;
-    private String message;
+    private String message = "";
     private String terminalIp;
-    private long terminalTime;
+    private int terminalTime;
     private String eGateLocation;
 
     public String getStatus() {
@@ -37,8 +37,8 @@ public class EmergencyResponse {
     }
 
     public String getTerminalTime() {
-        // 轉換 long > 日期
-        LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(terminalTime), ZoneId.systemDefault());
+        // 轉換 int > 日期
+        LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(terminalTime), ZoneId.systemDefault());
         return dateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     }
 

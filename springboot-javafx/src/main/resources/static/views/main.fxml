@@ -14,13 +14,15 @@
             <Button text="接收API服務" onAction="#handleSwitchPage">
                 <userData>emergency.fxml</userData>
             </Button>
+            <Button text="系統連線服務" onAction="#handleSwitchPage">
+                <userData>connect.fxml</userData>
+            </Button>
         </HBox>
     </top>
 
     <!-- 中央分頁區域 -->
     <center>
         <StackPane fx:id="contentArea" style="-fx-padding: 10;">
-            <!-- 預設顯示 -->
             <Label text="歡迎來到主頁！請點選左上方選項" />
         </StackPane>
     </center>
