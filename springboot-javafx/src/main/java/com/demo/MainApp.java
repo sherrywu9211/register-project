@@ -9,15 +9,16 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
+//@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class MainApp extends Application {
 
 	private ConfigurableApplicationContext springContext;
 
 	@Override
 	public void init() throws Exception {
-		// 啟動 Spring 應用程序上下文
-		springContext = new SpringApplicationBuilder(MainApp.class).run();
+//		// 啟動 Spring 應用程序上下文
+		springContext = new SpringApplicationBuilder(Main.class).run();
+		// todo修改main
 	}
 
 	@Override

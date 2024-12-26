@@ -31,6 +31,7 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
+
 		<!-- JavaFX 配置-->
 		<dependency>
 			<groupId>org.openjfx</groupId>
@@ -89,7 +90,7 @@
 				<artifactId>javapackager</artifactId>
 				<version>1.7.5</version>
 				<configuration>
-					<mainClass>com.demo.MainApp</mainClass> <!-- 主類 -->
+					<mainClass>com.demo.Main</mainClass> <!-- 主類 -->
 					<platform>windows</platform>
 					<bundleJre>true</bundleJre> <!-- 是否捆綁 JRE -->
 					<generateInstaller>false</generateInstaller> <!-- 是否生成安裝包 -->
