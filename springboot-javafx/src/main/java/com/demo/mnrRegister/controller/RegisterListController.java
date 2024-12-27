@@ -1,9 +1,9 @@
-package com.demo.controller;
+package com.demo.mnrRegister.controller;
 
-import com.demo.model.MnrResponse;
-import com.demo.model.Resident;
-import com.demo.service.MnrRegisterService;
-import com.demo.service.MnrRegisterServiceImpl;
+import com.demo.mnrRegister.model.MnrResponse;
+import com.demo.mnrRegister.model.Resident;
+import com.demo.mnrRegister.sevice.RegisterService;
+import com.demo.mnrRegister.sevice.RegisterServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,9 +20,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-public class MnrRegisterController {
+public class RegisterListController {
 
-    public static final Logger logger = LoggerFactory.getLogger(MnrRegisterController.class);
+    public static final Logger logger = LoggerFactory.getLogger(RegisterListController.class);
 
     // 第一支API使用的FXML欄位
     @FXML
@@ -38,7 +38,7 @@ public class MnrRegisterController {
     @FXML
     private TextField travelIdField;
 
-    MnrRegisterService mnrRegisterService = new MnrRegisterServiceImpl();
+    RegisterService mnrRegisterService = new RegisterServiceImpl();
 
     // 第二支API使用的FXML欄位
     @FXML
@@ -111,7 +111,7 @@ public class MnrRegisterController {
         });
     }
     // 第二支API 點擊TABLE的單筆DATA視窗
-    private static final String MNR_PERSON_VIEW = "/static/views/mnrPerson.fxml";
+    private static final String MNR_PERSON_VIEW = "/static/views/registerDetail.fxml";
     public void personClick(MnrResponse mnrResponse) {
         FXMLLoader loader = null;
         try {
@@ -127,7 +127,7 @@ public class MnrRegisterController {
             logger.error(e.getMessage(), e);
         }
         // 設定controller & 傳入data
-        MnrPersonController mnrPersonController = loader.getController();
+        RegisterDetailController mnrPersonController = loader.getController();
         mnrPersonController.setData(mnrResponse);
     }
 

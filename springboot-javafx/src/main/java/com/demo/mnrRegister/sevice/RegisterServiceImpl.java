@@ -1,8 +1,8 @@
-package com.demo.service;
+package com.demo.mnrRegister.sevice;
 
-import com.demo.model.MnrResponse;
-import com.demo.model.PersonResponse;
-import com.demo.model.Resident;
+import com.demo.mnrRegister.model.MnrResponse;
+import com.demo.mnrRegister.model.PersonResponse;
+import com.demo.mnrRegister.model.Resident;
 import com.demo.util.MnrApiUtil;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
@@ -12,7 +12,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 @Service
-public class MnrRegisterServiceImpl implements MnrRegisterService {
+public class RegisterServiceImpl implements RegisterService {
 
     MnrApiUtil mnrApiUtil = new MnrApiUtil();
     Gson gson = new Gson();
@@ -34,4 +34,5 @@ public class MnrRegisterServiceImpl implements MnrRegisterService {
         String responseJson = mnrApiUtil.oneMnrApi(travelId, passportNo, seqNo);
         return gson.fromJson(responseJson, PersonResponse.class);
     }
+
 }

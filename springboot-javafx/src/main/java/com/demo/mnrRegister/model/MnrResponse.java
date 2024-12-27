@@ -1,4 +1,4 @@
-package com.demo.model;
+package com.demo.mnrRegister.model;
 
 
 import java.time.Instant;

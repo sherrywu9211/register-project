@@ -1,16 +1,16 @@
-package com.demo.controller;
+package com.demo.mnrRegister.controller;
 
-import com.demo.model.MnrResponse;
-import com.demo.model.PersonResponse;
-import com.demo.service.MnrRegisterService;
-import com.demo.service.MnrRegisterServiceImpl;
+import com.demo.mnrRegister.model.MnrResponse;
+import com.demo.mnrRegister.model.PersonResponse;
+import com.demo.mnrRegister.sevice.RegisterService;
+import com.demo.mnrRegister.sevice.RegisterServiceImpl;
 import com.demo.util.ImageUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class MnrPersonController {
+public class RegisterDetailController {
 
     @FXML
     private Label systemUpdateTimeField;
@@ -27,7 +27,7 @@ public class MnrPersonController {
     @FXML
     private ImageView faceImageRegField;
 
-    MnrRegisterService mnrRegisterService = new MnrRegisterServiceImpl();
+    RegisterService mnrRegisterService = new RegisterServiceImpl();
 
     public void setData(MnrResponse mnrResponse){
         // 呼叫API & 取得回應結果

@@ -1,13 +1,14 @@
-package com.demo.service;
+package com.demo.mnrRegister.sevice;
 
-import com.demo.model.MnrResponse;
-import com.demo.model.PersonResponse;
-import com.demo.model.Resident;
+import com.demo.mnrRegister.model.MnrResponse;
+import com.demo.mnrRegister.model.PersonResponse;
+import com.demo.mnrRegister.model.Resident;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
-public interface MnrRegisterService {
+public interface RegisterService {
 
     List<MnrResponse> selectAllMnr(Resident resident);
     PersonResponse selectOneMnr(String travelId, String passportNo, String seqNo);
