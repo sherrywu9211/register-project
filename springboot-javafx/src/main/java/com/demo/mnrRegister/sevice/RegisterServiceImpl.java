@@ -3,7 +3,7 @@ package com.demo.mnrRegister.sevice;
 import com.demo.mnrRegister.model.MnrResponse;
 import com.demo.mnrRegister.model.PersonResponse;
 import com.demo.mnrRegister.model.Resident;
-import com.demo.util.MnrApiUtil;
+import com.demo.common.util.MnrApiUtil;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.stereotype.Service;

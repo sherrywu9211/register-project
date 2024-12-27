@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Label?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.demo.controller.ConnectController"
+      fx:controller="com.demo.connect.controller.ConnectController"
       prefHeight="400.0" prefWidth="600.0">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>

@@ -4,7 +4,7 @@ import com.demo.mnrRegister.model.MnrResponse;
 import com.demo.mnrRegister.model.PersonResponse;
 import com.demo.mnrRegister.sevice.RegisterService;
 import com.demo.mnrRegister.sevice.RegisterServiceImpl;
-import com.demo.util.ImageUtil;
+import com.demo.common.util.ImageUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

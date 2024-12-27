@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.demo.controller.MainController">
+            fx:controller="com.demo.common.controller.MainController">
     <!-- 上方按鈕區域 -->
     <top>
         <HBox spacing="20.0" style="-fx-padding: 10; -fx-background-color: #f0f0f0;">
             <Button text="MNR註冊查詢" onAction="#handleSwitchPage">
-                <userData>mnrRegister.fxml</userData>
+                <userData>registerList.fxml</userData>
             </Button>
             <Button text="接收API服務" onAction="#handleSwitchPage">
                 <userData>emergency.fxml</userData>
