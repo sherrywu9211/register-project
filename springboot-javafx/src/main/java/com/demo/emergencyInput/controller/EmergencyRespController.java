@@ -1,8 +1,8 @@
-package com.demo.controller;
+package com.demo.emergencyInput.controller;
 
-import com.demo.model.EmergencyRequest;
-import com.demo.service.EmergencyRespService;
-import com.demo.service.EmergencyRespServiceImpl;
+import com.demo.emergencyOutput.model.EmergencyRequest;
+import com.demo.emergencyInput.service.EmergencyRespService;
+import com.demo.emergencyInput.service.EmergencyRespServiceImpl;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

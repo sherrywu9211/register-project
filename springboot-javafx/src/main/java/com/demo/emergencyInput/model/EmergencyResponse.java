@@ -1,4 +1,4 @@
-package com.demo.model;
+package com.demo.emergencyInput.model;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

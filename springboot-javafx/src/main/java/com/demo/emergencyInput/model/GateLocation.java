@@ -1,4 +1,4 @@
-package com.demo.model;
+package com.demo.emergencyInput.model;
 
 public class GateLocation {
     // 靜態全域變數

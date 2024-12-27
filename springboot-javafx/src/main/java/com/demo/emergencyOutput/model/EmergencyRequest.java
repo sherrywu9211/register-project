@@ -1,4 +1,4 @@
-package com.demo.model;
+package com.demo.emergencyOutput.model;
 
 public class EmergencyRequest {
 

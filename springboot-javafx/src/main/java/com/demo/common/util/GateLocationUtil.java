@@ -1,11 +1,10 @@
-package com.demo.util;
+package com.demo.common.util;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -35,7 +34,7 @@ public class GateLocationUtil {
             case "13":
                 return "13-金門港";
             default:
-                return "";
+                return "取得失敗";
         }
     };
     // Location name轉換code
@@ -64,10 +63,9 @@ public class GateLocationUtil {
     // 取得設定檔的值
     public static String getLocation(){
         String location = "";
-        try (
-            InputStreamReader isr = new InputStreamReader(Files.newInputStream(Paths.get(LOCATION_PATH)),  StandardCharsets.UTF_8 )
-        ) {
-            JsonObject jsonObject = gson.fromJson(isr, JsonObject.class);
+        try{
+        // 讀取現有 JSON 檔案
+            JsonObject jsonObject = gson.fromJson(Files.readString(Paths.get(LOCATION_PATH), StandardCharsets.UTF_8), JsonObject.class);
             location = jsonObject.get("eGateLocation").getAsString();
         } catch (IOException e) {
             System.err.println("-----Error getLocation()-----");

@@ -1,8 +1,8 @@
-package com.demo.service;
+package com.demo.emergencyInput.service;
 
-import com.demo.model.EmergencyResponse;
-import com.demo.model.GateLocation;
-import com.demo.util.GateLocationUtil;
+import com.demo.emergencyInput.model.EmergencyResponse;
+import com.demo.emergencyInput.model.GateLocation;
+import com.demo.common.util.GateLocationUtil;
 import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

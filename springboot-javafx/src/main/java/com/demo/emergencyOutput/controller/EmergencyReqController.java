@@ -1,9 +1,9 @@
-package com.demo.controller;
+package com.demo.emergencyOutput.controller;
 
-import com.demo.model.EmergencyResponse;
-import com.demo.service.EmergencyReqService;
-import com.demo.service.EmergencyReqServiceImpl;
-import com.demo.util.GateLocationUtil;
+import com.demo.emergencyInput.model.EmergencyResponse;
+import com.demo.emergencyOutput.service.EmergencyReqService;
+import com.demo.emergencyOutput.service.EmergencyReqServiceImpl;
+import com.demo.common.util.GateLocationUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -42,6 +42,9 @@ public class EmergencyReqController {
         // 取得選項值
         String switchSystem = switchSystemChoiceBox.getValue();
         String switchLocation = GateLocationUtil.getCodeByLocationName(switchLocationChoiceBox.getValue());
+        // 取得目前位置
+        String currentGateLocation = GateLocationUtil.getLocation();
+
         // 傳送參數
         EmergencyResponse emergencyResponse = emergencyReqService.changeLocation(switchSystem, switchLocation);
         // VIEW顯示值
@@ -49,8 +52,10 @@ public class EmergencyReqController {
         messageField.setText(emergencyResponse.getMessage());
         terminalIpField.setText(emergencyResponse.getTerminalIp());
         terminalTimeField.setText(emergencyResponse.getTerminalTime());
-        eGateLocationField.setText(GateLocationUtil.getLocationNameByCode(emergencyResponse.geteGateLocation()));
-        currentGateLocationField.setText(GateLocationUtil.getLocationNameByCode(GateLocationUtil.getLocation()));
+        eGateLocationField.setText(GateLocationUtil.getLocationNameByCode(GateLocationUtil.getLocation()));
+
+        // code轉換文字
+        currentGateLocationField.setText( GateLocationUtil.getLocationNameByCode(GateLocationUtil.getLocation()));
     }
 
 }

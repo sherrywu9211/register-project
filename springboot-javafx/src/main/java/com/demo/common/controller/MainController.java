@@ -1,4 +1,4 @@
-package com.demo.controller;
+package com.demo.common.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;

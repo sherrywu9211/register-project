@@ -1,4 +1,4 @@
-package com.demo.util;
+package com.demo.common.util;
 
 import javafx.scene.image.Image;
 import java.io.ByteArrayInputStream;

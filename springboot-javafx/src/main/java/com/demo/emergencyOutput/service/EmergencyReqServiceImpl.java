@@ -1,8 +1,8 @@
-package com.demo.service;
+package com.demo.emergencyOutput.service;
 
-import com.demo.model.EmergencyRequest;
-import com.demo.model.EmergencyResponse;
-import com.demo.util.MnrApiUtil;
+import com.demo.emergencyOutput.model.EmergencyRequest;
+import com.demo.emergencyInput.model.EmergencyResponse;
+import com.demo.common.util.MnrApiUtil;
 import com.google.gson.Gson;
 
 public class EmergencyReqServiceImpl implements EmergencyReqService {
@@ -18,6 +18,8 @@ public class EmergencyReqServiceImpl implements EmergencyReqService {
         emergencyRequest.setSwitchLocation(switchLocation);
         // 呼叫API & 取得回應結果
         String jsonResponse = mnrApiUtil.changEmergencyApi(emergencyRequest);
+        
+        //TODO TRY CATCH jsonResponse NULL
         return gson.fromJson(jsonResponse, EmergencyResponse.class);
     }
 

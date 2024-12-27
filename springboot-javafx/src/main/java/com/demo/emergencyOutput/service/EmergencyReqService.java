@@ -1,6 +1,6 @@
-package com.demo.service;
+package com.demo.emergencyOutput.service;
 
-import com.demo.model.EmergencyResponse;
+import com.demo.emergencyInput.model.EmergencyResponse;
 
 public interface EmergencyReqService {
 
