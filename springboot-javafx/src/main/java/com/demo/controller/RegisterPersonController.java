@@ -2,8 +2,8 @@ package com.demo.controller;
 
 import com.demo.model.RegisterListEntity;
 import com.demo.model.RegisterPersonEntity;
-import com.demo.service.RegisterService;
-import com.demo.service.RegisterServiceImpl;
+import com.demo.service.input.RegisterService;
+import com.demo.service.input.RegisterServiceImpl;
 import com.demo.util.ImageUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

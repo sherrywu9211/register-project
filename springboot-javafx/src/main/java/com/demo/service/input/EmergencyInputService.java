@@ -1,4 +1,4 @@
-package com.demo.service;
+package com.demo.service.input;
 
 public interface EmergencyInputService {
 

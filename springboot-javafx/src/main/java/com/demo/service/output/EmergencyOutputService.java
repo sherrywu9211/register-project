@@ -1,4 +1,4 @@
-package com.demo.service;
+package com.demo.service.output;
 
 import com.demo.model.EmergencyInputEntity;
 

@@ -1,4 +1,4 @@
-package com.demo.service;
+package com.demo.service.output;
 
 import com.demo.model.EmergencyOutputEntity;
 import com.demo.model.EmergencyInputEntity;
@@ -10,7 +10,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

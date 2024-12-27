@@ -2,8 +2,8 @@ package com.demo.controller;
 
 import com.demo.model.RegisterListEntity;
 import com.demo.model.RegisterSelectEntity;
-import com.demo.service.RegisterService;
-import com.demo.service.RegisterServiceImpl;
+import com.demo.service.input.RegisterService;
+import com.demo.service.input.RegisterServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

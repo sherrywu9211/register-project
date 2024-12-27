@@ -1,4 +1,4 @@
-package com.demo.service;
+package com.demo.service.input;
 
 import com.demo.model.RegisterListEntity;
 import com.demo.model.RegisterPersonEntity;

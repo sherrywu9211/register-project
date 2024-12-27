@@ -1,8 +1,8 @@
 package com.demo.controller;
 
 import com.demo.model.EmergencyOutputEntity;
-import com.demo.service.EmergencyInputService;
-import com.demo.service.EmergencyInputServiceImpl;
+import com.demo.service.input.EmergencyInputService;
+import com.demo.service.input.EmergencyInputServiceImpl;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

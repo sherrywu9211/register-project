@@ -11,9 +11,9 @@ import java.nio.file.Paths;
 
 public class GateLocationUtil {
 
-    public static final Logger logger = LoggerFactory.getLogger(GateLocationUtil.class);
     private static final Gson gson = new Gson();
     private static final String LOCATION_PATH = "config/eGateLocation.json";
+    public static final Logger logger = LoggerFactory.getLogger(GateLocationUtil.class);
 
     // Location code轉換name
     public static String getLocationNameByCode(String location) {
@@ -37,6 +37,7 @@ public class GateLocationUtil {
                 return "取得失敗";
         }
     };
+
     // Location name轉換code
     public static String getCodeByLocationName(String location) {
         // 處理null
@@ -64,11 +65,10 @@ public class GateLocationUtil {
     public static String getLocation(){
         String location = "";
         try{
-        // 讀取現有 JSON 檔案
+            // 讀取現有 JSON 檔案
             JsonObject jsonObject = gson.fromJson(Files.readString(Paths.get(LOCATION_PATH), StandardCharsets.UTF_8), JsonObject.class);
             location = jsonObject.get("eGateLocation").getAsString();
         } catch (IOException e) {
-            System.err.println("-----Error getLocation()-----");
             logger.error(e.getMessage(), e);
         }
         return location;
@@ -86,7 +86,6 @@ public class GateLocationUtil {
             // 將更新後的內容寫回檔案
             Files.writeString(Paths.get(LOCATION_PATH), gson.toJson(jsonObject), StandardCharsets.UTF_8);
         } catch (IOException e) {
-            System.err.println("-----Error setLocation()-----");
             logger.error(e.getMessage(), e);
         }
     }

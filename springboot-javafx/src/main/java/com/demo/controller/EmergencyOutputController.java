@@ -1,8 +1,8 @@
 package com.demo.controller;
 
 import com.demo.model.EmergencyInputEntity;
-import com.demo.service.EmergencyOutputService;
-import com.demo.service.EmergencyOutputServiceImpl;
+import com.demo.service.output.EmergencyOutputService;
+import com.demo.service.output.EmergencyOutputServiceImpl;
 import com.demo.util.GateLocationUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
