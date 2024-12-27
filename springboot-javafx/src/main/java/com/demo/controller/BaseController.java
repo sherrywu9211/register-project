@@ -1,8 +1,5 @@
 package com.demo.controller;
 
-import com.demo.service.EmergencyRespService;
-import com.demo.service.EmergencyRespServiceImpl;
-import com.demo.model.EmergencyRequest;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +8,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.io.*;
 
 public class BaseController {
@@ -51,19 +43,4 @@ public class BaseController {
         loadView(targetPage);
     }
 
-    @RestController
-    @RequestMapping("/api")
-    public static class EmergencyRespController {
-
-        EmergencyRespService emergencyRespService = new EmergencyRespServiceImpl();
-
-        // API URL
-        // http://localhost:8080/api/MonToEnrEmergency
-        @PostMapping("/MonToEnrEmergency")
-        public String handleEmergencyRequest(@RequestBody EmergencyRequest emergencyRequest) {
-            return emergencyRespService.getRequest(
-                    emergencyRequest.getSwitchSystem(), emergencyRequest.getSwitchLocation());
-        }
-
-    }
 }

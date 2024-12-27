@@ -1,14 +1,14 @@
 package com.demo.controller;
 
-import com.demo.model.EmergencyResponse;
-import com.demo.service.EmergencyReqService;
-import com.demo.service.EmergencyReqServiceImpl;
+import com.demo.model.EmergencyInputEntity;
+import com.demo.service.EmergencyOutputService;
+import com.demo.service.EmergencyOutputServiceImpl;
 import com.demo.util.GateLocationUtil;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 
-public class EmergencyReqController {
+public class EmergencyOutputController {
 
     @FXML
     private Label currentGateLocationField;
@@ -26,7 +26,7 @@ public class EmergencyReqController {
     private Label terminalTimeField;
     @FXML
     private Label eGateLocationField;
-    EmergencyReqService emergencyReqService = new EmergencyReqServiceImpl();
+    EmergencyOutputService emergencyOutputService = new EmergencyOutputServiceImpl();
 
     // 顯示目前位置
     @FXML
@@ -42,20 +42,22 @@ public class EmergencyReqController {
         // 取得選項值
         String switchSystem = switchSystemChoiceBox.getValue();
         String switchLocation = GateLocationUtil.getCodeByLocationName(switchLocationChoiceBox.getValue());
-        // 取得目前位置
-        String currentGateLocation = GateLocationUtil.getLocation();
 
         // 傳送參數
-        EmergencyResponse emergencyResponse = emergencyReqService.changeLocation(switchSystem, switchLocation);
-        // VIEW顯示值
-        statusField.setText(emergencyResponse.getStatus());
-        messageField.setText(emergencyResponse.getMessage());
-        terminalIpField.setText(emergencyResponse.getTerminalIp());
-        terminalTimeField.setText(emergencyResponse.getTerminalTime());
-        eGateLocationField.setText(GateLocationUtil.getLocationNameByCode(GateLocationUtil.getLocation()));
+        EmergencyInputEntity emergencyInputEntity = emergencyOutputService.sendEmergencyRequest(switchSystem, switchLocation);
+        if (emergencyInputEntity != null) {
+            // VIEW顯示值
+            statusField.setText(emergencyInputEntity.getStatus());
+            messageField.setText(emergencyInputEntity.getMessage());
+            terminalIpField.setText(emergencyInputEntity.getTerminalIp());
+            terminalTimeField.setText(emergencyInputEntity.getTerminalTime());
+            eGateLocationField.setText(GateLocationUtil.getLocationNameByCode(GateLocationUtil.getLocation()));
 
-        // code轉換文字
-        currentGateLocationField.setText( GateLocationUtil.getLocationNameByCode(GateLocationUtil.getLocation()));
+            // code轉換文字
+            currentGateLocationField.setText( GateLocationUtil.getLocationNameByCode(GateLocationUtil.getLocation()));
+        }else {
+            eGateLocationField.setText("連線失敗");
+        }
     }
 
 }

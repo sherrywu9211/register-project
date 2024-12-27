@@ -1,6 +1,6 @@
 package com.demo.model;
 
-public class EmergencyRequest {
+public class EmergencyOutputEntity {
 
     private String switchSystem;
     private String switchLocation;

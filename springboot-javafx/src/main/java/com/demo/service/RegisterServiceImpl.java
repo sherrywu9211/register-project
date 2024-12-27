@@ -3,7 +3,6 @@ package com.demo.service;
 import com.demo.model.RegisterListEntity;
 import com.demo.model.RegisterPersonEntity;
 import com.demo.model.RegisterSelectEntity;
-import com.demo.util.MnrApiUtil;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import org.slf4j.Logger;
