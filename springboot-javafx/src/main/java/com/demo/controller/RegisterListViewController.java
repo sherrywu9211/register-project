@@ -20,9 +20,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
-public class RegisterListController {
+public class RegisterListViewController {
 
-    public static final Logger logger = LoggerFactory.getLogger(RegisterListController.class);
+    public static final Logger logger = LoggerFactory.getLogger(RegisterListViewController.class);
 
     // 第一支API使用的FXML欄位
     @FXML
@@ -118,7 +118,7 @@ public class RegisterListController {
         });
     }
     // 第二支API 顯示單筆DATA視窗
-    private static final String MNR_PERSON_VIEW = "/static/views/registerPerson.fxml";
+    private static final String MNR_PERSON_VIEW = "/static/views/registerPersonView.fxml";
     public void showPerson(RegisterListEntity mnrResponse) {
         FXMLLoader loader = null;
         try {
@@ -134,7 +134,7 @@ public class RegisterListController {
             logger.error(e.getMessage(), e);
         }
         // 設定controller & 傳入data
-        RegisterPersonController mnrPersonController = loader.getController();
+        RegisterPersonViewController mnrPersonController = loader.getController();
         mnrPersonController.setData(mnrResponse);
     }
 

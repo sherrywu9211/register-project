@@ -1,18 +1,21 @@
 package com.demo.controller;
 
 import jakarta.websocket.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @ClientEndpoint
-public class WebSocketClientController {
+public class WebSocketClientViewController {
 
+    private static final Logger logger = LoggerFactory.getLogger(WebSocketClientViewController.class);
 
     @OnOpen
     public void onOpen(Session session) {
-        System.out.println("已連接到伺服器");
+        System.out.println("已連接到B專案");
         try {
-            session.getBasicRemote().sendText("Hello from 客戶端");
+            session.getBasicRemote().sendText("我是A專案");
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error( "---onOpen()-連線失敗--" + e.getMessage());
         }
     }
     @OnMessage
