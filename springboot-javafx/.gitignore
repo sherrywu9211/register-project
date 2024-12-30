@@ -36,3 +36,4 @@ build/
 emergency_api_record/**
 springboot-javafx/logs/**
 springboot-javafx/config/eGateLocation.json
+springboot-javafx/javafx-sdk-23.0.1/**

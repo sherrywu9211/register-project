@@ -27,3 +27,4 @@ replay_pid*
 springboot-javafx/config/eGateLocation.json
 emergency_api_record/**
 springboot-javafx/logs/**
+springboot-javafx/javafx-sdk-23.0.1/**
