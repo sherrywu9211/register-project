@@ -42,4 +42,5 @@ public class BaseController {
         String targetPage = button.getUserData().toString();
         loadView(targetPage);
     }
+
 }

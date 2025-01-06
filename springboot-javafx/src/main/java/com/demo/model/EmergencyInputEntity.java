@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-public class EmergencyResponse {
+public class EmergencyInputEntity {
     private String status;
     private String message = "";
     private String terminalIp;

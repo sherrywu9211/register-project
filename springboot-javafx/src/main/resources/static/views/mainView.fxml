@@ -4,18 +4,18 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.demo.controller.MainController">
+            fx:controller="com.demo.controller.MainViewController">
     <!-- 上方按鈕區域 -->
     <top>
         <HBox spacing="20.0" style="-fx-padding: 10; -fx-background-color: #f0f0f0;">
             <Button text="MNR註冊查詢" onAction="#handleSwitchPage">
-                <userData>mnrRegister.fxml</userData>
+                <userData>registerListView.fxml</userData>
             </Button>
             <Button text="接收API服務" onAction="#handleSwitchPage">
-                <userData>emergency.fxml</userData>
+                <userData>emergencyOutputView.fxml</userData>
             </Button>
             <Button text="系統連線服務" onAction="#handleSwitchPage">
-                <userData>connect.fxml</userData>
+                <userData>webSocketClientView.fxml</userData>
             </Button>
         </HBox>
     </top>

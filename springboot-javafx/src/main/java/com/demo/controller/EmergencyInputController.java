@@ -1,8 +1,8 @@
 package com.demo.controller;
 
-import com.demo.model.EmergencyRequest;
-import com.demo.service.EmergencyRespService;
-import com.demo.service.EmergencyRespServiceImpl;
+import com.demo.model.EmergencyOutputEntity;
+import com.demo.service.input.EmergencyInputService;
+import com.demo.service.input.EmergencyInputServiceImpl;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class EmergencyRespController {
+public class EmergencyInputController {
 
-    EmergencyRespService emergencyRespService = new EmergencyRespServiceImpl();
+    EmergencyInputService emergencyRespService = new EmergencyInputServiceImpl();
 
     // API URL
     // http://localhost:8080/api/MonToEnrEmergency
     @PostMapping("/MonToEnrEmergency")
-    public String handleEmergencyRequest(@RequestBody EmergencyRequest emergencyRequest) {
-        return emergencyRespService.getRequest(
+    public String handleEmergencyRequest(@RequestBody EmergencyOutputEntity emergencyRequest) {
+        return emergencyRespService.receiveRequest(
                 emergencyRequest.getSwitchSystem(), emergencyRequest.getSwitchLocation());
     }
 

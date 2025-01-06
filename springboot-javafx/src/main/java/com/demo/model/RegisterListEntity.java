@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-public class MnrResponse {
+public class RegisterListEntity {
 
     private long systemUpdateTime;
     private int port;

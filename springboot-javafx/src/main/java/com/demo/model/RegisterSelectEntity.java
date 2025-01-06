@@ -3,7 +3,7 @@ package com.demo.model;
 
 import java.util.Arrays;
 
-public class Resident {
+public class RegisterSelectEntity {
 
     private String passportNo = "";  // 護照號碼
     private String permitNo = "";    // 許可證號

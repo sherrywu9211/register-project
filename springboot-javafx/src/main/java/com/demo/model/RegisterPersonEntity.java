@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-public class PersonResponse {
+public class RegisterPersonEntity {
 
     private String systemUpdateTime;
     private int port;

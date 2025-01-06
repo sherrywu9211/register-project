@@ -24,7 +24,11 @@ hs_err_pid*
 replay_pid*
 
 # 忽略 檔案
-springboot-javafx/config/eGateLocation.json
 emergency_api_record/**
 springboot-javafx/logs/**
+<<<<<<< HEAD
 springboot-javafx/javafx-sdk-23.0.1/**
+=======
+springboot-javafx/javafx-sdk-23.0.1/**
+springboot-javafx/config/eGateLocation.json
+>>>>>>> main
