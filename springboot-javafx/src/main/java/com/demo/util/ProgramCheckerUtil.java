@@ -28,8 +28,4 @@ public class ProgramCheckerUtil {
         return false;
     }
 
-
-
-
-
 }
