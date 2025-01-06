@@ -4,20 +4,31 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.demo.controller.WebSocketClientViewController"
-      prefHeight="400.0" prefWidth="600.0">
+      prefHeight="400.0" prefWidth="600.0" spacing="10">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <HBox>
-        <Label text="訊息1：" />
-        <Label fx:id="msg1" />
+        <Label text="【連接狀況】：" />
+        <Label fx:id="connectStatusLabel" />
     </HBox>
     <Region prefHeight="20"/> <!-- 空行 -->
     <HBox>
-        <Label text="訊息2：" />
-        <Label fx:id="msg2" />
+        <Label text="發送訊息：" />
+        <TextField fx:id="sendMsgText" />
     </HBox>
+    <HBox>
+        <Label text="接收訊息：" />
+        <Label fx:id="receiveMsgText" />
+    </HBox>
+    <Region prefHeight="20"/> <!-- 空行 -->
+    <VBox>
+        <Button text="送出" onAction="#submitButtonClick" />
+        <Label fx:id="errorLabel" />
+    </VBox>
 </VBox>
