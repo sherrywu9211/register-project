@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 
 public class ProgramCheckerUtil {
 
-
     // 檢查程式是否啟動
     public static boolean isProgramRunning(String programName) {
         try {

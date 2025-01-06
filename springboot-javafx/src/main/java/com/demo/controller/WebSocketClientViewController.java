@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 public class WebSocketClientViewController implements WebSocketListener {
 
     private WebSocketClient webSocketClient;
-//	private static final String WEBSOCKET_URI = "ws://localhost:8081/ws";
 	private static final int MAX_RETRIES = 5;
     private int retryCount = 0;
 
@@ -29,9 +28,11 @@ public class WebSocketClientViewController implements WebSocketListener {
         webSocketClient = new WebSocketClient(this);
         connectWebSocket();
     }
+
     private void connectWebSocket() {
-        webSocketClient.connect("ws://localhost:8081/wssss");
+        webSocketClient.connect("ws://localhost:8081/ws");
     }
+
     @FXML
     public void submitButtonClick() {
         String sendMsg = sendMsgText.getText();
@@ -61,7 +62,6 @@ public class WebSocketClientViewController implements WebSocketListener {
 
     @Override
     public void onError(Throwable throwable) {
-
         retryCount++;
         Platform.runLater(() -> {
             if (retryCount < MAX_RETRIES) {
@@ -73,11 +73,6 @@ public class WebSocketClientViewController implements WebSocketListener {
                 showErrorAlert("WebSocket 無法連線，請稍後再試。");
             }
         });
-
-//        Platform.runLater(() -> {
-//                connectStatusLabel.setText("連線失敗");
-//                errorLabel.setText("WebSocket 發生錯誤: " + throwable.getMessage());
-//        });
     }
 
     private void showErrorAlert(String message) {

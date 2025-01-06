@@ -19,7 +19,6 @@ import java.time.format.DateTimeFormatter;
 
 public class EmergencyOutputServiceImpl implements EmergencyOutputService {
 
-
     public static final Logger logger = LoggerFactory.getLogger(EmergencyOutputServiceImpl.class);
     private static final String EMERGENCY_URL = "http://localhost:8080/api/MonToEnrEmergency";
     RestTemplate restTemplate = new RestTemplate();
@@ -61,6 +60,7 @@ public class EmergencyOutputServiceImpl implements EmergencyOutputService {
             saveEmergencyRecord("response_" , response.getBody());
 
             return gson.fromJson(response.getBody(), EmergencyInputEntity.class);
+
         } catch (Exception e) {
             logger.error("--API 3 -error---- : " + e.getMessage(), e);
             return null;

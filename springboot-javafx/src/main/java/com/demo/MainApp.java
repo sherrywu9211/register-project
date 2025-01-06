@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import static com.demo.util.ProgramCheckerUtil.isProgramRunning;
-import static javax.management.remote.JMXConnectorFactory.connect;
 
 public class MainApp extends Application {
 
