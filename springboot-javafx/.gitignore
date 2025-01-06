@@ -35,5 +35,10 @@ build/
 # 忽略 檔案
 emergency_api_record/**
 springboot-javafx/logs/**
+<<<<<<< HEAD
+springboot-javafx/config/eGateLocation.json
+springboot-javafx/javafx-sdk-23.0.1/**
+=======
 springboot-javafx/javafx-sdk-23.0.1/**
 springboot-javafx/config/eGateLocation.json
+>>>>>>> main
