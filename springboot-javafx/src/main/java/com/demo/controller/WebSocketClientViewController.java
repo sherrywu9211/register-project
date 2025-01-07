@@ -4,14 +4,17 @@ import com.demo.websocket.WebSocketClient;
 import com.demo.websocket.WebSocketListener;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import java.util.Timer;
+import java.util.TimerTask;
+import static com.demo.util.showErrorUtil.showErrorAlert;
 
+//public class WebSocketClientViewController {
 public class WebSocketClientViewController implements WebSocketListener {
 
+    private static final String WEBSOCKET_URL = "ws://localhost:8081/ws";
     private WebSocketClient webSocketClient;
-	private static final int MAX_RETRIES = 5;
     private int retryCount = 0;
 
     @FXML
@@ -23,14 +26,13 @@ public class WebSocketClientViewController implements WebSocketListener {
     @FXML
     private Label errorLabel;
 
-    @FXML
-    public void initialize() {
-        webSocketClient = new WebSocketClient(this);
-        connectWebSocket();
-    }
+    // 初始化 WebSocketClient
+    public void initWebSocketClient() {
+//        webSocketClient = new WebSocketClient(this);
+//        webSocketClient.connect(WEBSOCKET_URL);
 
-    private void connectWebSocket() {
-        webSocketClient.connect("ws://localhost:8081/ws");
+        // 從 MainViewController 獲取共享的 WebSocketClient
+        webSocketClient = MainViewController.getWebSocketClient();
     }
 
     @FXML
@@ -64,9 +66,14 @@ public class WebSocketClientViewController implements WebSocketListener {
     public void onError(Throwable throwable) {
         retryCount++;
         Platform.runLater(() -> {
-            if (retryCount < MAX_RETRIES) {
+            if (retryCount < 5) { // 最大重連次數
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        Platform.runLater(() ->webSocketClient.connect(WEBSOCKET_URL));
+                    }
+                }, 2000); // 延遲 2000 毫秒（2 秒）
                 connectStatusLabel.setText("連線中...（重試次數：" + retryCount + "）");
-                connectWebSocket();
             } else {
                 connectStatusLabel.setText("連線失敗");
                 errorLabel.setText("WebSocket 發生錯誤: " + throwable.getMessage());
@@ -75,11 +82,5 @@ public class WebSocketClientViewController implements WebSocketListener {
         });
     }
 
-    private void showErrorAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("錯誤");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
+
 }

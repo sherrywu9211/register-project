@@ -25,9 +25,16 @@ public class BaseController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource( BASE_PATH + fxmlFile));
             Pane page = loader.load(); // 加載並取得根節點
+
+            // 如果是 WebSocketClientViewController，初始化 WebSocket
+            if (loader.getController() instanceof WebSocketClientViewController controller) {
+                controller.initWebSocketClient(); // 呼叫初始化邏輯
+            }
+
             contentArea.getChildren().clear(); // 清除 現有的子節點。
             contentArea.getChildren().add(page); // 將page 節點 加到 contentArea 。
-            if(loader.getController() instanceof BaseController) {  //檢查控制器類型
+            // 檢查控制器類型 如果有子控制器，設置 contentPane
+            if(loader.getController() instanceof BaseController) {
                 ((BaseController) loader.getController()).setContentPane(contentArea);
             }
         } catch (IOException e) {
