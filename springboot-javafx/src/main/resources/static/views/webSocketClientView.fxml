@@ -29,6 +29,7 @@
     <Region prefHeight="20"/> <!-- 空行 -->
     <VBox>
         <Button text="送出" onAction="#submitButtonClick" />
+        <Region prefHeight="20"/> <!-- 空行 -->
         <Label fx:id="errorLabel" />
     </VBox>
 </VBox>

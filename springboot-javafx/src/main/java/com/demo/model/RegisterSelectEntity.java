@@ -1,6 +1,5 @@
 package com.demo.model;
 
-
 import java.util.Arrays;
 
 public class RegisterSelectEntity {

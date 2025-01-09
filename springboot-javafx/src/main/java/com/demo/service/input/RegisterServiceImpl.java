@@ -32,7 +32,7 @@ public class RegisterServiceImpl implements RegisterService {
     public List<RegisterListEntity> selectList(RegisterSelectEntity resident) {
 
         // 物件轉JSON
-        String mnrParams= "";
+        String mnrParams = "";
         try {
             Gson gson = new Gson();
             mnrParams = gson.toJson(resident);
@@ -45,13 +45,11 @@ public class RegisterServiceImpl implements RegisterService {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<String> entity = new HttpEntity<>(mnrParams, headers);
 
-        ResponseEntity<String> response = null;
         // 取得JSON response
+        ResponseEntity<String> response = null;
         try{
             // API 傳送參數 & 回傳參數
-            response = restTemplate.postForEntity(
-                    MNR4_BACKEND_URL, entity, String.class
-            );
+            response = restTemplate.postForEntity(MNR4_BACKEND_URL, entity, String.class);
             // 發送與回應API的內容 存LOG
             logger.info("--API 1 Request-- : " + entity);
             logger.info("--API 1 Response-- : " + response);
@@ -71,7 +69,6 @@ public class RegisterServiceImpl implements RegisterService {
     // 第二支API 個人查詢
     @Override
     public RegisterPersonEntity selectOnePerson(String travelId, String passportNo, String seqNo) {
-
         try {
             // 呼叫API & 取得回應結果
             String personUrl = UriComponentsBuilder.fromHttpUrl(MNR4_PERSON_URL)
