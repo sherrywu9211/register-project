@@ -2,10 +2,9 @@ package com.demo;
 
 import com.demo.controller.WebSocketClientViewController;
 import com.demo.websocket.WebSocketClient;
-import com.demo.websocket.WebSocketListener;
+import com.demo.websocket.WebSocketManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
@@ -19,9 +18,6 @@ public class MainApp extends Application {
 
 	private ConfigurableApplicationContext springContext;
 	private static final Logger logger = LoggerFactory.getLogger(MainApp.class);
-	private WebSocketClient webSocketClient;
-	private static final String WEBSOCKET_URL = "ws://localhost:8081/ws";
-	private WebSocketListener listener;
 
 	@Override
 	public void init() throws Exception {
@@ -43,17 +39,20 @@ public class MainApp extends Application {
 
 	private void showMainView(Stage stage) throws Exception {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/static/views/mainView.fxml"));
+
+//		Object controller = fxmlLoader.getController();
+//		WebSocketClientViewController wsController = (WebSocketClientViewController) controller;
+//		WebSocketManager.getInstance().initialize(wsController);
+
 		Scene scene = new Scene(fxmlLoader.load(), 600, 600);
 		stage.setTitle("MNR查詢系統");
 		stage.setScene(scene);
 		stage.show();
+
 	}
 
 	@Override
 	public void stop() throws Exception {
-		if (webSocketClient != null) {
-			webSocketClient.close(); // 關閉 WebSocket 連線
-		}
 		super.stop();
 		springContext.close(); 	// 關閉 Spring 上下文
 	}
