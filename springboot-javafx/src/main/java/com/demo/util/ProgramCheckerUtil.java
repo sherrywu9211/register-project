@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import static com.demo.util.showErrorUtil.showErrorAlert;
 
 public class ProgramCheckerUtil {
@@ -28,7 +27,7 @@ public class ProgramCheckerUtil {
                 }
             }
         } catch (IOException e) {
-            logger.error("找不到執行程式---" + e);
+            logger.error("找不到執行程式: " + e);
         }
         // 沒有找到程式名
         return false;
@@ -41,13 +40,12 @@ public class ProgramCheckerUtil {
             // 1 如果未啟動 則嘗試啟動server端
             Process process = Runtime.getRuntime().exec(WEBSOCKET_APP_URL);
             process.waitFor();
-            logger.info("server端程式 啟動成功---");
+            logger.info("server端程式 啟動成功");
             return true;
         }catch (Exception e) {
-            // 1. 如果啟動失敗
-            // 1.1.1 如果啟動失敗 顯示錯誤提醒
+            // 2. 如果啟動失敗 顯示錯誤提醒
             showErrorAlert("server端程式 啟動失敗，請稍後再試");
-            logger.error("server端程式 啟動失敗---" + e);
+            logger.error("server端程式 啟動失敗: " + e);
             return false;
         }
     }
